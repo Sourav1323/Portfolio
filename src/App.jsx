@@ -18,25 +18,37 @@ import { personalInfo } from './data/portfolioData';
 
 function App() {
   const [recruiterModalOpen, setRecruiterModalOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    return localStorage.getItem('sourav_theme') || 'obsidian';
+  });
+
+  React.useEffect(() => {
+    document.body.className = `theme-${currentTheme}`;
+    localStorage.setItem('sourav_theme', currentTheme);
+  }, [currentTheme]);
 
   const triggerDownloadConfetti = () => {
     confetti({
       particleCount: 90,
       spread: 75,
       origin: { y: 0.8 },
-      colors: ['#818cf8', '#c084fc', '#38bdf8', '#34d399']
+      colors: ['#3b82f6', '#10b981', '#f59e0b', '#818cf8']
     });
   };
 
   return (
-    <div className="min-h-screen bg-[#080d1a] text-slate-200 relative selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen relative">
       
       {/* Top Glass Navbar */}
       <Navbar onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
 
       {/* Main Sections */}
       <main>
-        <Hero onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
+        <Hero 
+          onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
+          currentTheme={currentTheme}
+          onSelectTheme={setCurrentTheme}
+        />
         <SkillsShowcase />
         <div id="architectures">
           <IndustryPillars />
