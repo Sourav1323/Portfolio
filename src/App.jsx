@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SkillsShowcase from './components/SkillsShowcase';
+import IndustryPillars from './components/IndustryPillars';
+import LeadershipSection from './components/LeadershipSection';
 import AIEraAdvantage from './components/AIEraAdvantage';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectsSection from './components/ProjectsSection';
@@ -36,6 +38,12 @@ function App() {
       <main>
         <Hero onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
         <SkillsShowcase />
+        <div id="architectures">
+          <IndustryPillars />
+        </div>
+        <div id="leadership">
+          <LeadershipSection />
+        </div>
         <AIEraAdvantage />
         <ExperienceTimeline />
         <ProjectsSection />

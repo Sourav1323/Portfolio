@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   FileDown, 
   Terminal, 
@@ -10,11 +10,13 @@ import {
   Star, 
   Cpu, 
   Target,
-  ArrowUpRight
+  Upload,
+  CheckCircle2,
+  Users
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import Canvas3D from './Canvas3D';
-import { personalInfo, impactMetrics } from '../data/portfolioData';
+import { personalInfo, impactMetrics, executiveHighlights } from '../data/portfolioData';
 
 const iconMap = {
   ShieldCheck: ShieldCheck,
@@ -22,10 +24,13 @@ const iconMap = {
   Award: Award,
   Star: Star,
   Cpu: Cpu,
-  Target: Target
+  Target: Target,
+  Users: Users
 };
 
 const Hero = ({ onOpenRecruiterModal }) => {
+  const [avatarSrc, setAvatarSrc] = useState(personalInfo.avatarUrl || '/sourav_avatar.png');
+
   const triggerDownloadConfetti = () => {
     confetti({
       particleCount: 100,
@@ -35,71 +40,95 @@ const Hero = ({ onOpenRecruiterModal }) => {
     });
   };
 
+  const handleCustomPhotoUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (uploadEvent) => {
+        if (uploadEvent.target?.result) {
+          setAvatarSrc(uploadEvent.target.result);
+          confetti({
+            particleCount: 50,
+            spread: 60,
+            origin: { y: 0.6 }
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <section className="relative min-h-[92vh] pt-24 sm:pt-32 pb-16 sm:pb-24 flex flex-col justify-center overflow-hidden">
-      {/* Soothing Ambient Aurora Glows */}
+    <section className="relative min-h-[94vh] pt-28 sm:pt-36 pb-16 sm:pb-24 flex flex-col justify-center overflow-hidden">
+      {/* Ambient background glows */}
       <div className="aurora-blob top-10 left-1/4 w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] bg-indigo-600/12 animate-pulse-calm" />
       <div className="aurora-blob bottom-10 right-10 w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-purple-600/12 animate-float-slow" />
       <div className="aurora-blob top-1/2 right-1/3 w-[250px] sm:w-[450px] h-[250px] sm:h-[450px] bg-sky-500/10 animate-float-reverse" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Spacious, Relaxing Typography & Value Proposition */}
+          {/* Left 7 Columns: Executive Typography & MNC Positioning */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
             
-            {/* Pill Badges */}
-            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3">
-              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 backdrop-blur-md">
+            {/* Executive Status Pill Badges */}
+            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                 TCS Assistant System Engineer
               </span>
-              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20 backdrop-blur-md">
+              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-200 border border-indigo-500/25 backdrop-blur-md">
+                <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+                Netherlands Client Operations
+              </span>
+              <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-200 border border-purple-500/25 backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-purple-300" />
                 Anthropic Certified Claude Dev
               </span>
             </div>
 
-            {/* Main Headline */}
+            {/* Headline */}
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-3xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.2]">
-                Resilient Backends, <br />
-                <span className="bg-gradient-to-r from-indigo-300 via-purple-300 to-sky-300 bg-clip-text text-transparent">
-                  High-Throughput Databases
+              <h1 className="text-3xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.18]">
+                Distributed Systems, <br />
+                <span className="bg-gradient-to-r from-indigo-300 via-sky-300 to-purple-300 bg-clip-text text-transparent">
+                  High-Performance Databases
                 </span> <br />
                 <span className="text-slate-300 text-2xl sm:text-4xl xl:text-5xl font-light">
-                  Amplified with Generative AI.
+                  & AI-Augmented Engineering.
                 </span>
               </h1>
               
               <p className="text-sm sm:text-lg text-slate-300/90 max-w-2xl leading-relaxed pt-1 sm:pt-2">
                 Hello, I'm <span className="text-white font-semibold">{personalInfo.name}</span>. 
-                I design robust server systems, optimize multi-million row SQL architectures, and orchestrate enterprise workflows in 
-                <span className="text-indigo-200 font-medium"> Java, SQL, & Cloud</span>—leveraging AI agentic workflows to accelerate delivery with zero compromise on code quality.
+                A Software Engineer specializing in <span className="text-indigo-200 font-medium">Java (11/17), Spring Boot, Distributed Systems & SQL optimization</span>. 
+                Proven track record resolving 30+ complex weekly incidents for international users at TCS, with a deep foundation in 
+                computational algorithms, technical leadership, and modern AI acceleration.
               </p>
             </div>
 
-            {/* Recruiter Thesis Card - Clean Glass */}
-            <div className="p-4 sm:p-6 rounded-2xl aurora-card border border-white/[0.08] text-left max-w-xl mx-auto lg:mx-0 shadow-xl">
-              <div className="flex items-start gap-3 sm:gap-4">
+            {/* MNC Alignment Strip */}
+            <div className="p-4 sm:p-5 rounded-2xl aurora-card border border-white/[0.08] text-left max-w-xl mx-auto lg:mx-0 shadow-xl">
+              <div className="flex items-start gap-3.5">
                 <div className="p-2.5 sm:p-3 rounded-xl bg-indigo-500/15 text-indigo-300 shrink-0 mt-0.5">
-                  <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Terminal className="w-5 h-5" />
                 </div>
-                <div className="space-y-1 sm:space-y-1.5">
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-indigo-300">
-                    Why Recruiters Value This Profile
+                <div className="space-y-1">
+                  <div className="text-xs font-bold uppercase tracking-wider text-indigo-300 flex items-center justify-between">
+                    <span>MNC & Tier-1 Engineering Profile</span>
+                    <span className="text-emerald-400 font-mono text-[11px]">SDE-1 / SDE-2</span>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    AI automates boilerplate syntax, which makes deep Computer Science intuition irreplaceable. 
-                    I combine <span className="text-sky-300 font-medium">5-Star HackerRank C++/SQL fundamentals</span> with 
-                    <span className="text-purple-300 font-medium"> Anthropic Claude Developer certification</span> and 
-                    real-world client delivery for a 200–500 user European client at TCS.
+                    Combines <strong className="text-white">5-Star HackerRank C++/SQL fundamentals</strong>, 
+                    <strong className="text-white"> dual ServiceNow certifications (CAD & CSA)</strong>, 
+                    <strong className="text-white"> 40% database performance optimization</strong>, and 
+                    demonstrated engineering team leadership (Top 20/250 Hackathon Finalist).
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Actions */}
+            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
               <a
                 href={personalInfo.resumeUrl}
@@ -108,7 +137,7 @@ const Hero = ({ onOpenRecruiterModal }) => {
                 className="w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-sky-500 hover:from-indigo-400 hover:to-sky-400 transition-all duration-300 flex items-center justify-center gap-2.5 shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <FileDown className="w-4 h-4 text-white" />
-                <span>Download Verified Resume</span>
+                <span>Download Official Resume</span>
               </a>
 
               <button
@@ -116,25 +145,25 @@ const Hero = ({ onOpenRecruiterModal }) => {
                 className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-semibold text-slate-200 aurora-card hover:bg-white/[0.08] hover:border-indigo-400/40 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <Target className="w-4 h-4 text-indigo-400" />
-                <span>ATS Recruiter Summary</span>
+                <span>ATS Executive Brief</span>
               </button>
 
               <a
-                href="#skills"
+                href="#leadership"
                 className="w-full sm:w-auto px-4 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition-colors flex items-center justify-center gap-2"
               >
-                <span>Explore Skills</span>
+                <span>Leadership Profile</span>
                 <ArrowRight className="w-4 h-4 text-indigo-400" />
               </a>
             </div>
 
-            {/* Quick Tech Badges */}
-            <div className="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-xs text-slate-400">
-              <span className="text-slate-500 font-medium mr-1">Core Tech:</span>
-              {['Java', 'SQL (40% Speedup)', 'Claude API', 'ServiceNow CAD/CSA', 'Salesforce Apex', 'System Design', 'Azure'].map((tag) => (
+            {/* Core Stack Tags */}
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs text-slate-400">
+              <span className="text-slate-500 font-medium mr-1">Enterprise Stack:</span>
+              {['Java 11/17', 'Spring Boot', 'SQL (40% Tuning)', 'ServiceNow CAD/CSA', 'Claude API', 'C++ (5-Star)', 'Docker', 'Linux'].map((tag) => (
                 <span 
                   key={tag} 
-                  className="px-3 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-slate-300 font-mono text-[11px]"
+                  className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06] text-slate-300 font-mono text-[11px]"
                 >
                   {tag}
                 </span>
@@ -143,39 +172,87 @@ const Hero = ({ onOpenRecruiterModal }) => {
 
           </div>
 
-          {/* Right Column: Hypnotic 3D Celestial Core */}
+          {/* Right 5 Columns: 3D Celestial Core & Digital Executive Avatar Deck */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full aspect-square max-w-[540px] flex items-center justify-center">
-              
-              {/* Soft Ambient Radiance */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 via-purple-500/15 to-sky-500/15 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Three.js Canvas */}
+            
+            {/* 3D Celestial Astrolabe in background */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60">
               <Canvas3D />
+            </div>
 
-              {/* Floating Calming Annotations */}
-              <div className="absolute top-4 right-2 sm:right-6 p-4 rounded-2xl aurora-card border border-white/[0.1] text-xs shadow-2xl animate-float-slow pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-                  <span className="font-semibold text-sky-200">AI-Augmented Velocity</span>
+            {/* Interactive 3D Avatar / Action Figure Card */}
+            <div className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] rounded-3xl p-4 sm:p-5 aurora-card-glow border border-indigo-400/35 shadow-2xl backdrop-blur-2xl group transition-all duration-500 hover:scale-[1.02]">
+              
+              {/* Photo Container with Stylized Glass Border */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/4.6] bg-[#060a16] border border-white/[0.1] shadow-inner">
+                <img
+                  src={avatarSrc}
+                  alt="Sourav Gupta - Software Engineer"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    // Fallback to stylized SVG placeholder if avatar file isn't loaded yet
+                    e.currentTarget.src = "/sourav_avatar.jpg";
+                  }}
+                />
+
+                {/* Subtle Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080d1a] via-transparent to-transparent opacity-80" />
+
+                {/* Top Status Badge */}
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 text-emerald-300 border border-emerald-500/30 backdrop-blur-md flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Verified SDE Talent</span>
                 </div>
-                <div className="text-[11px] text-slate-400 mt-1">3-5x Faster Delivery with Claude API</div>
+
+                {/* Optional Custom Photo Upload Button */}
+                <label 
+                  htmlFor="photo-upload-input" 
+                  className="absolute top-3 right-3 p-2 rounded-xl bg-black/60 hover:bg-black/80 text-slate-300 hover:text-white border border-white/[0.1] backdrop-blur-md cursor-pointer transition-all"
+                  title="Upload personal photo headshot"
+                >
+                  <Upload className="w-3.5 h-3.5" />
+                  <input 
+                    id="photo-upload-input" 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleCustomPhotoUpload} 
+                    className="hidden" 
+                  />
+                </label>
+
+                {/* Bottom Overlay Info on Avatar */}
+                <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-[#090e1e]/85 backdrop-blur-md border border-white/[0.08] space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-extrabold text-white">Sourav Gupta</span>
+                    <span className="text-[10px] font-mono text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-400/20">
+                      TCS Engineer
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-slate-300 truncate">
+                    Platform Reliability & Enterprise Systems
+                  </div>
+                </div>
               </div>
 
-              <div className="absolute bottom-6 left-2 sm:left-6 p-4 rounded-2xl aurora-card border border-white/[0.1] text-xs shadow-2xl animate-float-reverse pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  <span className="font-semibold text-emerald-200">High-Performance SQL</span>
+              {/* Floating 3D Stats Badges */}
+              <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs">
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                  <div className="font-extrabold text-indigo-300">200–500 EU Users</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">TCS Client Scope</div>
                 </div>
-                <div className="text-[11px] text-slate-400 mt-1">40% Query Acceleration via Indexing</div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                  <div className="font-extrabold text-emerald-300">40% SQL Boost</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Celebal Performance</div>
+                </div>
               </div>
 
             </div>
+
           </div>
 
         </div>
 
-        {/* Quantifiable Impact Metrics Ribbon - Airy & Spacious */}
+        {/* Quantifiable Impact Metrics Ribbon */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
           {impactMetrics.map((item, index) => {
             const Icon = iconMap[item.icon] || Award;

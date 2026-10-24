@@ -8,7 +8,8 @@ export const personalInfo = {
   linkedin: "https://linkedin.com/in/sourav-gupta-3ab283228",
   github: "https://github.com/Sourav1323",
   resumeUrl: "/Sourav_Gupta_Resume.pdf",
-  status: "🟢 Open for Software Engineering & Backend Roles across Global & European Tech",
+  avatarUrl: "/sourav_avatar.png",
+  status: "🟢 Available for Software Engineer / SDE-1 / SDE-2 Roles across Global MNCs & Product Tech",
   education: {
     institution: "Jaipur Engineering College and Research Centre (JECRC)",
     degree: "B.Tech in Information Technology",
@@ -17,6 +18,99 @@ export const personalInfo = {
     affiliation: "Rajasthan Technical University (RTU)"
   }
 };
+
+export const executiveHighlights = [
+  {
+    title: "Enterprise Client POC (TCS)",
+    description: "Primary point of contact for a Netherlands enterprise engineering client (200–500 international users), resolving 30+ critical incidents weekly.",
+    icon: "ShieldCheck"
+  },
+  {
+    title: "Engineering Team Leadership",
+    description: "Led a 4-engineer squad under 24-hour hackathon pressure to rank in the Top 20 of 250 teams nationwide.",
+    icon: "Users"
+  },
+  {
+    title: "Database Performance Tuning",
+    description: "Optimized complex SQL schemas and B-Tree indexing strategies, achieving up to 40% query performance acceleration at Celebal.",
+    icon: "Zap"
+  },
+  {
+    title: "Dual ServiceNow & Cloud Certified",
+    description: "Dual-certified in ServiceNow (CAD & CSA), SAP Cloud ABAP, and Anthropic Claude Developer.",
+    icon: "Award"
+  }
+];
+
+export const industryArchitectures = [
+  {
+    id: "enterprise",
+    label: "Enterprise & Cloud Systems",
+    headline: "Mission-Critical Platform Architecture & Governance",
+    description: "Designed for Fortune 500 scale, zero downtime, and automated compliance. Experience delivering for European international enterprise users.",
+    capabilities: [
+      "8+ ServiceNow automated production workflows & script includes",
+      "Salesforce Apex, Visualforce, and Lightning Web Components (LWC)",
+      "MuleSoft API integration & ITIL incident lifecycle governance",
+      "Dual ServiceNow Certified (CAD & CSA) and SAP Cloud ABAP"
+    ]
+  },
+  {
+    id: "fintech",
+    label: "High-Throughput & FinTech Systems",
+    headline: "Low-Latency Transactions, Real-Time Ledgers & ACID Safety",
+    description: "Deep personal passion and active experience in financial markets, quantitative logic, and tax/settlement engines engineered for deterministic accuracy.",
+    capabilities: [
+      "Deterministic calculation engines: GST, freight tiers, dynamic cost modeling",
+      "Sub-second query optimization: Index seeks eliminating 2.4M-row full table scans",
+      "Slowly Changing Dimensions (SCD Type 1/2) for immutable audit trails & ledger history",
+      "ACID concurrency control preventing race conditions and transaction deadlocks"
+    ]
+  },
+  {
+    id: "interactive",
+    label: "Real-Time & Interactive Engines",
+    headline: "Deterministic State Machines & Algorithmic Rigor",
+    description: "Long-standing passion for interactive simulation, game loop architecture, and algorithmic mechanics grounded in 4 years of advanced mathematics mentorship.",
+    capabilities: [
+      "5-Star HackerRank in C++: Memory management, pointers, and low-level algorithmic efficiency",
+      "Deterministic state transitions & event-driven dispatch queues",
+      "4-year track record as Mathematics Mentor (7 students guided to 95%+ scores)",
+      "Rapid sprint delivery: Shipped Shringar in 1 month, reducing post-release bugs by ~80%"
+    ]
+  }
+];
+
+export const leadershipData = [
+  {
+    role: "Primary Enterprise Point of Contact",
+    organization: "Tata Consultancy Services (TCS) — Netherlands Client",
+    metric: "200–500 International Users",
+    description: "Act as the primary technical point of contact managing daily stakeholder communication, high-priority SLA incident resolution (30+ weekly), and platform release alignment for a major European engineering client.",
+    skills: ["Stakeholder Management", "Crisis Resolution", "ServiceNow CAD", "Client Communication"]
+  },
+  {
+    role: "Engineering Squad Lead",
+    organization: "Smart City Hackathon — Nationwide",
+    metric: "Top 20 of 250 Teams (Top 8%)",
+    description: "Directed a 4-person engineering team in an intensive 24-hour sprint. Architected task distribution, rapid code reviews, and integrated real-time diagnostic center mapping under tight deadlines.",
+    skills: ["Agile Sprint Leadership", "Task Delegation", "Rapid Prototyping", "Conflict Resolution"]
+  },
+  {
+    role: "Counselor Intern",
+    organization: "Admission Cell, JECRC Foundation",
+    metric: "University Level Stakeholders",
+    description: "Selected to counsel prospective engineering students and parents directly alongside senior university professors, aligning student career paths with technical curriculum requirements.",
+    skills: ["Executive Communication", "Active Listening", "Program Counseling", "Institutional Trust"]
+  },
+  {
+    role: "Mathematics Mentor & Educator",
+    organization: "BLJ Classes — Jaipur",
+    metric: "7 Students Scored 95%+",
+    description: "Taught 9th–10th grade advanced mathematics for 4 years. Developed structured pedagogy and problem-solving mental models, mentoring 7 students to achieve 95%+ in board examinations.",
+    skills: ["Pedagogical Empathy", "Long-Term Mentorship", "Quantitative Rigor", "Student Growth"]
+  }
+];
 
 export const impactMetrics = [
   { label: "Weekly Incidents Resolved", value: "30+", subtext: "Netherlands Client (TCS)", icon: "ShieldCheck" },

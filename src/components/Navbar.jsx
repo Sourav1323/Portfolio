@@ -8,7 +8,9 @@ import {
   Mail, 
   Menu, 
   X,
-  Target
+  Target,
+  Cpu,
+  Users
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
@@ -36,6 +38,8 @@ const Navbar = ({ onOpenRecruiterModal }) => {
 
   const navLinks = [
     { label: "Skills", href: "#skills", icon: Layers },
+    { label: "Domains", href: "#architectures", icon: Cpu },
+    { label: "Leadership", href: "#leadership", icon: Users },
     { label: "AI Paradigm", href: "#ai-paradigm", icon: Sparkles },
     { label: "Experience", href: "#experience", icon: Briefcase },
     { label: "Projects", href: "#projects", icon: FolderGit2 },
