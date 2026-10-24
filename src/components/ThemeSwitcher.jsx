@@ -3,18 +3,18 @@ import { Palette, Check } from 'lucide-react';
 
 export const themes = [
   {
-    id: 'obsidian',
-    name: 'Executive Obsidian',
-    tagline: 'Stripe & Linear SDE Standard',
-    accent: 'bg-blue-500',
-    colors: ['#080b12', '#3b82f6', '#93c5fd']
-  },
-  {
     id: 'fintech',
     name: 'FinTech Terminal',
     tagline: 'Bloomberg & Wall St. Precision',
     accent: 'bg-amber-500',
     colors: ['#060a14', '#f59e0b', '#10b981']
+  },
+  {
+    id: 'obsidian',
+    name: 'Executive Obsidian',
+    tagline: 'Stripe & Linear SDE Standard',
+    accent: 'bg-blue-500',
+    colors: ['#080b12', '#3b82f6', '#93c5fd']
   },
   {
     id: 'minimal',

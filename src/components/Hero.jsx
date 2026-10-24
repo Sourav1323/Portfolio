@@ -34,8 +34,8 @@ const iconMap = {
 };
 
 const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
-  // Card visual mode: 'real' (photo upload/preview) | 'monogram' (executive corporate badge) | 'avatar' (3D action figure)
-  const [visualMode, setVisualMode] = useState('monogram');
+  // Default to the full-body stylized 3D action figure
+  const [visualMode, setVisualMode] = useState('avatar');
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
     const saved = localStorage.getItem('sourav_custom_photo');
     if (saved) {
       setUploadedPhoto(saved);
-      setVisualMode('real');
     }
   }, []);
 
@@ -258,21 +257,21 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
               </div>
 
               {/* Main Visual Display Area */}
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/4.6] bg-[#060a16] border border-white/[0.1] shadow-inner flex flex-col items-center justify-center p-6">
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4.2] bg-[#050814] border border-white/[0.1] shadow-2xl flex flex-col items-center justify-center p-2 group">
                 
-                {/* Mode 1: Executive 3D Monogram (Zero fake faces, 100% corporate prestige) */}
+                {/* Mode 1: Executive 3D Monogram */}
                 {visualMode === 'monogram' && (
-                  <div className="flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="flex flex-col items-center justify-center text-center space-y-4 p-6">
                     <div className="relative">
                       {/* Pulsing Concentric Tech Rings */}
-                      <div className="w-28 h-28 rounded-full border-2 border-blue-500/30 animate-spin-very-slow flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full border border-sky-400/40" />
+                      <div className="w-28 h-28 rounded-full border-2 border-amber-500/30 animate-spin-very-slow flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full border border-emerald-400/40" />
                       </div>
                       
                       {/* Monogram Center */}
-                      <div className="absolute inset-0 m-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-sky-400 p-[1.5px] shadow-2xl shadow-blue-500/40">
+                      <div className="absolute inset-0 m-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-emerald-600 to-sky-400 p-[1.5px] shadow-2xl shadow-amber-500/30">
                         <div className="w-full h-full bg-[#080d1a] rounded-[14px] flex items-center justify-center">
-                          <span className="text-3xl font-black font-mono bg-gradient-to-r from-blue-300 via-sky-200 to-indigo-200 bg-clip-text text-transparent">
+                          <span className="text-3xl font-black font-mono bg-gradient-to-r from-amber-300 via-emerald-200 to-sky-200 bg-clip-text text-transparent">
                             SG
                           </span>
                         </div>
@@ -281,7 +280,7 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
 
                     <div className="space-y-1">
                       <h4 className="text-lg font-extrabold text-white">Sourav Gupta</h4>
-                      <p className="text-xs text-blue-300 font-mono">Software Engineer • SDE</p>
+                      <p className="text-xs text-amber-300 font-mono">Software Engineer • Quantitative Systems</p>
                       <p className="text-[11px] text-slate-400 max-w-[220px]">
                         TCS Netherlands Client POC • Dual ServiceNow CAD/CSA
                       </p>
@@ -291,7 +290,7 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
                       <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                         5-Star C++ & SQL
                       </span>
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-amber-500/15 text-amber-300 border border-amber-500/30">
                         Claude Certified
                       </span>
                     </div>
@@ -309,18 +308,18 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
                       />
                     ) : (
                       <div className="text-center space-y-3 p-4">
-                        <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mx-auto text-blue-400">
+                        <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto text-amber-400">
                           <Upload className="w-7 h-7" />
                         </div>
                         <div>
                           <p className="text-xs font-bold text-white">Upload Your Real Photo</p>
                           <p className="text-[11px] text-slate-400 mt-1">
-                            Click below to select your headshot or place <code className="text-blue-300 font-mono">profile.jpg</code> in your public folder.
+                            Click below to select your headshot or place <code className="text-amber-300 font-mono">profile.jpg</code> in your public folder.
                           </p>
                         </div>
                         <label 
                           htmlFor="direct-photo-upload" 
-                          className="inline-block px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white cursor-pointer transition-colors shadow-lg shadow-blue-500/25"
+                          className="inline-block px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white cursor-pointer transition-colors shadow-lg shadow-amber-500/25"
                         >
                           Select Photo From Computer
                           <input 
@@ -336,16 +335,34 @@ const Hero = ({ onOpenRecruiterModal, currentTheme, onSelectTheme }) => {
                   </div>
                 )}
 
-                {/* Mode 3: 3D Action Figure Portrait */}
+                {/* Mode 3: Full Body Stylized 3D Action Figure */}
                 {visualMode === 'avatar' && (
-                  <img
-                    src="/sourav_avatar.png"
-                    alt="Sourav Gupta 3D Figure"
-                    className="w-full h-full object-cover object-top rounded-xl transition-transform duration-700 group-hover:scale-105"
-                    onError={(e) => {
-                      e.currentTarget.src = "/sourav_avatar.jpg";
-                    }}
-                  />
+                  <div className="w-full h-full relative overflow-hidden rounded-xl">
+                    <img
+                      src="/action_figure.jpg"
+                      alt="Sourav Gupta - Full Body 3D Action Figure"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                      onError={(e) => {
+                        e.currentTarget.src = "/action_figure.png";
+                      }}
+                    />
+                    
+                    {/* Bottom Floating Figurine Plate */}
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/[0.1] flex items-center justify-between">
+                      <div>
+                        <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                          <span>Sourav Gupta</span>
+                          <span className="text-[9px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.2 rounded border border-amber-400/30">
+                            SDE Figurine
+                          </span>
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          Quantitative Systems & Backend SDE
+                        </div>
+                      </div>
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    </div>
+                  </div>
                 )}
 
                 {/* Top Status Beacon */}

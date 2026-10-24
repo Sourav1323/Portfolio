@@ -19,7 +19,7 @@ import { personalInfo } from './data/portfolioData';
 function App() {
   const [recruiterModalOpen, setRecruiterModalOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState(() => {
-    return localStorage.getItem('sourav_theme') || 'obsidian';
+    return localStorage.getItem('sourav_theme') || 'fintech';
   });
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
       particleCount: 90,
       spread: 75,
       origin: { y: 0.8 },
-      colors: ['#3b82f6', '#10b981', '#f59e0b', '#818cf8']
+      colors: ['#f59e0b', '#10b981', '#3b82f6', '#fbbf24']
     });
   };
 
