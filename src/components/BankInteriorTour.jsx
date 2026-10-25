@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Building2, 
   TrendingUp, 
@@ -22,7 +22,10 @@ import {
   Key,
   Flame,
   CheckCircle2,
-  RefreshCw
+  RefreshCw,
+  Compass,
+  Radio,
+  Target
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalInfo, atsResumeText } from '../data/portfolioData';
@@ -33,6 +36,9 @@ export default function BankInteriorTour({ onBackToExterior }) {
   const [copiedType, setCopiedType] = useState(null);
   const [isSimulating, setIsSimulating] = useState(false);
   const [simResults, setSimResults] = useState(null);
+  const [isPointing, setIsPointing] = useState(true);
+  const [pointingTarget, setPointingTarget] = useState('Overview');
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   const floors = [
     {
@@ -41,7 +47,8 @@ export default function BankInteriorTour({ onBackToExterior }) {
       name: 'Grand Rotunda & Security Plinth',
       dept: 'Institutional Welcome & Clearance',
       icon: Building2,
-      hostQuote: "Welcome to the Bank of Institutional Systems. I am Sourav Gupta, Assistant System Engineer at TCS and your host. I engineer scalable distributed services and manage enterprise client operations. Please review your Security Clearance credentials.",
+      hostQuote: "Welcome to the Bank of Institutional Systems! I am Sourav Gupta, Assistant System Engineer at TCS and your host. I engineer scalable distributed services and manage enterprise client operations. Notice the credentials on the right.",
+      pointTarget: "Enterprise Security Clearance (99.4% SLA)"
     },
     {
       id: 'trading',
@@ -49,7 +56,8 @@ export default function BankInteriorTour({ onBackToExterior }) {
       name: 'High-Throughput Trading Floor',
       dept: 'FinTech Engines & Deterministic Ledgers',
       icon: TrendingUp,
-      hostQuote: "Welcome to Level 42. Active in financial markets since age 18, I translate trading mechanics, market microstructure, and game loops into deterministic transaction pipelines with zero race conditions and sub-second SQL tuning.",
+      hostQuote: "Welcome to Level 42! Active in financial markets since age 18, I translate trading mechanics, market microstructure, and game loops into deterministic transaction pipelines with zero race conditions and sub-second SQL tuning.",
+      pointTarget: "ACID Concurrency Simulator & -96.7% SQL Tuning"
     },
     {
       id: 'incident',
@@ -58,6 +66,7 @@ export default function BankInteriorTour({ onBackToExterior }) {
       dept: 'TCS European Client Operations',
       icon: ShieldCheck,
       hostQuote: "Step inside Incident Command. Here I act as the primary technical point of contact for our Netherlands enterprise client (200–500 international users), resolving 30+ critical incidents weekly with a 99.4% SLA adherence record.",
+      pointTarget: "30+ Weekly Incident Triage & 8+ Production Workflows"
     },
     {
       id: 'leadership',
@@ -66,6 +75,7 @@ export default function BankInteriorTour({ onBackToExterior }) {
       dept: 'Human Empathy & Crisis Composure',
       icon: Users,
       hostQuote: "Technical engineering without human leadership is incomplete. Here is how I stay calm during high-stakes P1/P2 production outages, bridge technical complexity with international clients, and mentor the next generation of engineers.",
+      pointTarget: "95.8% EQ Index & 4-Year Math Mentorship"
     },
     {
       id: 'vault',
@@ -74,6 +84,7 @@ export default function BankInteriorTour({ onBackToExterior }) {
       dept: 'Signature Production Repositories',
       icon: FolderGit2,
       hostQuote: "Welcome inside the Bank's Software Vault. These are signature software systems I've engineered with deterministic state machines, automated GST tiers, and rigorous concurrency control.",
+      pointTarget: "Production Software Architecture & Repositories"
     },
     {
       id: 'governor',
@@ -82,11 +93,18 @@ export default function BankInteriorTour({ onBackToExterior }) {
       dept: 'Priority Hiring & Executive Dispatch',
       icon: Key,
       hostQuote: "You have arrived at the Governor's Suite! Fast-track your hiring cycle: copy my ATS plaintext dossier directly into your recruitment software or transmit a direct interview dispatch to my inbox.",
+      pointTarget: "Direct Interview Request & 1-Click ATS Copy"
     }
   ];
 
   const currentFloorData = floors.find(f => f.id === activeFloor) || floors[0];
   const currentIndex = floors.findIndex(f => f.id === activeFloor);
+
+  // Trigger Pointing animation whenever floor changes
+  useEffect(() => {
+    setIsPointing(true);
+    setPointingTarget(currentFloorData.pointTarget);
+  }, [activeFloor]);
 
   const handleNext = () => {
     if (currentIndex < floors.length - 1) {
@@ -98,6 +116,17 @@ export default function BankInteriorTour({ onBackToExterior }) {
     if (currentIndex > 0) {
       setActiveFloor(floors[currentIndex - 1].id);
     }
+  };
+
+  const handleTriggerPointing = () => {
+    setIsPointing(false);
+    setTimeout(() => setIsPointing(true), 100);
+    confetti({
+      particleCount: 40,
+      spread: 50,
+      origin: { x: 0.3, y: 0.5 },
+      colors: ['#10b981', '#d4af37', '#38bdf8']
+    });
   };
 
   const handleCopy = (text, type) => {
@@ -152,23 +181,23 @@ CORE SPECIALIZATIONS:
 - Education: B.Tech in Information Technology, JECRC (CGPA 8.4).`;
 
   return (
-    <div className="w-full space-y-8 animate-in fade-in duration-500">
+    <div className="w-full space-y-8 animate-in fade-in duration-500 relative">
       
       {/* Top Bank Breadcrumb & Navigation Strip */}
-      <div className="p-4 rounded-2xl bg-[#0b0f1a] border border-[#d4af37]/30 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+      <div className="p-4 sm:p-5 rounded-3xl bg-[#0b0f1a] border border-[#d4af37]/35 flex flex-wrap items-center justify-between gap-4 shadow-2xl">
         <div className="flex items-center gap-3">
           <button
             onClick={onBackToExterior}
-            className="px-3.5 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-mono-telemetry text-slate-300 hover:text-white border border-white/[0.1] transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-[#d4af37]/20 text-xs font-mono-telemetry text-slate-300 hover:text-[#d4af37] border border-white/[0.1] hover:border-[#d4af37]/40 transition-all flex items-center gap-2 cursor-pointer shadow-md"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>View 3D Bank Exterior</span>
+            <span>Exit to Street / View 3D Bank Exterior</span>
           </button>
           
-          <div className="h-4 w-[1px] bg-slate-800 hidden sm:block" />
+          <div className="h-4 w-[1px] bg-slate-800 hidden md:block" />
 
           <div className="flex items-center gap-2 text-xs font-mono-telemetry">
-            <span className="text-[#d4af37] font-bold">BANK HEADQUARTERS</span>
+            <span className="text-[#d4af37] font-bold">INSIDE HEADQUARTERS</span>
             <span className="text-slate-600">/</span>
             <span className="text-emerald-400 font-semibold">{currentFloorData.level}</span>
             <span className="text-slate-600">/</span>
@@ -181,18 +210,18 @@ CORE SPECIALIZATIONS:
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className="p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors border border-white/[0.08] cursor-pointer"
+            className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition-colors border border-white/[0.08] cursor-pointer"
             title="Previous Compartment"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <span className="text-xs font-mono-telemetry text-slate-400 px-2">
+          <span className="text-xs font-mono-telemetry text-[#d4af37] font-bold px-3">
             0{currentIndex + 1} / 0{floors.length}
           </span>
           <button
             onClick={handleNext}
             disabled={currentIndex === floors.length - 1}
-            className="p-2 rounded-xl bg-[#d4af37]/20 hover:bg-[#d4af37]/30 text-[#d4af37] disabled:opacity-30 disabled:pointer-events-none transition-colors border border-[#d4af37]/40 cursor-pointer"
+            className="p-2.5 rounded-xl bg-[#d4af37]/20 hover:bg-[#d4af37]/30 text-[#d4af37] disabled:opacity-30 disabled:pointer-events-none transition-colors border border-[#d4af37]/40 cursor-pointer"
             title="Next Compartment"
           >
             <ArrowRight className="w-4 h-4" />
@@ -200,47 +229,82 @@ CORE SPECIALIZATIONS:
         </div>
       </div>
 
-      {/* Main Bank Interior Split: Host Pedestal & Floor Compartment */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* Main Bank Interior Split: Moving & Pointing Host Pedestal (Left) + Interior Compartment (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
         
-        {/* Left Column (5 Cols): The 3D Action Figure as the Bank Host */}
-        <div className="lg:col-span-5 space-y-5">
+        {/* ======================================================== */}
+        {/* LEFT COLUMN: MOVING & POINTING ACTION FIGURE HOST (5 COLS) */}
+        {/* ======================================================== */}
+        <div className="lg:col-span-5 space-y-5 sticky top-24">
           
-          {/* Action Figure Display Pedestal */}
-          <div className="relative rounded-3xl p-4 bg-gradient-to-b from-[#111827] via-[#0d131f] to-[#080c14] border border-[#d4af37]/40 shadow-2xl overflow-hidden group">
+          {/* Action Figure Display Pedestal with Floating Animation */}
+          <div 
+            className="relative rounded-3xl p-4 sm:p-5 bg-gradient-to-b from-[#131a29] via-[#0d131f] to-[#080c14] border border-[#d4af37]/50 shadow-2xl overflow-hidden group transition-transform duration-300"
+            style={{
+              animation: 'float-slow 6s ease-in-out infinite'
+            }}
+          >
             
             {/* Ambient Gilded Radial Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-72 h-72 bg-[#d4af37]/15 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Top Host Ribbon */}
-            <div className="flex items-center justify-between mb-3">
+            {/* Top Host Status Ribbon */}
+            <div className="flex items-center justify-between mb-3 relative z-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 text-[#d4af37] text-[11px] font-mono-telemetry font-bold uppercase">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Official Bank Host</span>
+                <span>Host Guide Standing By</span>
               </div>
-              <span className="text-[10px] font-mono-telemetry text-slate-400 uppercase">
-                Clearance: Level 5
-              </span>
+              
+              <button
+                onClick={handleTriggerPointing}
+                className="text-[10px] font-mono-telemetry text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 px-2.5 py-1 rounded-lg border border-emerald-500/30 transition-all flex items-center gap-1 cursor-pointer"
+                title="Trigger Host Pointing Action"
+              >
+                <Target className="w-3 h-3 text-emerald-400" />
+                <span>Point at Info ➔</span>
+              </button>
             </div>
 
-            {/* 3D Action Figure Portrait */}
+            {/* 3D Action Figure Portrait with Dynamic Pointing Laser Beam */}
             <div className="relative rounded-2xl overflow-hidden aspect-[3/4.1] bg-[#070b14] border border-white/[0.1] shadow-inner mb-4">
+              
+              {/* The Action Figure Image */}
               <img
                 src="/action_figure.jpg"
                 alt="Sourav Gupta - Official Bank Building Host & Systems Engineer"
-                className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
                 onError={(e) => {
                   e.currentTarget.src = "/action_figure.png";
                 }}
               />
 
+              {/* DYNAMIC HOLOGRAPHIC POINTING LASER / BEAM OVERLAY */}
+              {isPointing && (
+                <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+                  {/* Laser Emitter Point on Host's Hand/Compass */}
+                  <div className="absolute top-[48%] right-[22%] w-4 h-4 rounded-full bg-emerald-400 shadow-[0_0_20px_#10b981] animate-ping" />
+                  <div className="absolute top-[48%] right-[22%] w-3 h-3 rounded-full bg-white shadow-[0_0_12px_#ffffff]" />
+
+                  {/* Pulsing Holographic Guidance Beam Shooting Rightwards towards Compartment */}
+                  <div 
+                    className="absolute top-[49%] right-0 w-[45%] h-[3px] bg-gradient-to-r from-emerald-400 via-[#d4af37] to-cyan-400 shadow-[0_0_15px_#10b981] animate-pulse"
+                    style={{ transformOrigin: 'left center' }}
+                  />
+                  
+                  {/* Floating Pointing Indicator Chip */}
+                  <div className="absolute bottom-16 right-3 px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur-md border border-emerald-400/50 text-[10px] font-mono-telemetry text-emerald-300 font-bold flex items-center gap-1.5 shadow-xl animate-bounce">
+                    <span>HOST POINTING TO INFO ➔</span>
+                  </div>
+                </div>
+              )}
+
               {/* Floating Host Floor Badge */}
-              <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-black/80 text-emerald-400 border border-emerald-500/40 backdrop-blur-md font-mono-telemetry flex items-center gap-1.5">
-                <span>{currentFloorData.level} Host</span>
+              <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-black/80 text-[#d4af37] border border-[#d4af37]/40 backdrop-blur-md font-mono-telemetry flex items-center gap-1.5 z-10">
+                <span>{currentFloorData.level} Guide</span>
               </div>
 
               {/* Bottom Holographic Plaque */}
-              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#090d18]/90 backdrop-blur-md border border-[#d4af37]/40 flex items-center justify-between">
+              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#090d18]/90 backdrop-blur-md border border-[#d4af37]/40 flex items-center justify-between z-10">
                 <div>
                   <div className="text-xs font-bold text-white flex items-center gap-1.5">
                     <span>Sourav Gupta</span>
@@ -249,36 +313,53 @@ CORE SPECIALIZATIONS:
                     </span>
                   </div>
                   <div className="text-[10px] text-slate-400 font-mono-telemetry mt-0.5">
-                    Architect & Host of the Bank Headquarters
+                    Official Host & Distributed Systems Architect
                   </div>
                 </div>
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] animate-ping" />
               </div>
             </div>
 
-            {/* Host Speech Bubble (Dynamically updates with current compartment) */}
-            <div className="p-4 rounded-2xl bg-[#06080e]/90 border border-white/[0.08] relative">
-              <div className="text-[10px] font-mono-telemetry text-[#d4af37] uppercase font-bold tracking-wider mb-1 flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3" />
-                <span>Host Commentary • {currentFloorData.name}</span>
+            {/* Host Audio Voice Synthesizer Soundwave & Speech Bubble */}
+            <div className="p-4 rounded-2xl bg-[#06080e]/95 border border-white/[0.08] relative">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-[10px] font-mono-telemetry text-[#d4af37] uppercase font-bold tracking-wider flex items-center gap-1.5">
+                  <Radio className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                  <span>Host Audio Briefing • {currentFloorData.name}</span>
+                </div>
+
+                {/* Animated Voice Soundwave */}
+                <div className="flex items-center gap-0.5 h-3">
+                  <span className="w-1 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-emerald-300 rounded-full animate-bounce" />
+                  <span className="w-1 h-2 bg-cyan-400 rounded-full animate-pulse" />
+                  <span className="w-1 h-3 bg-[#d4af37] rounded-full animate-bounce" />
+                </div>
               </div>
+
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
                 "{currentFloorData.hostQuote}"
               </p>
+
+              {/* Target Highlight Banner */}
+              <div className="mt-2.5 pt-2 border-t border-white/[0.06] flex items-center gap-1.5 text-[11px] font-mono-telemetry text-emerald-400 font-semibold">
+                <Target className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>Pointing at: {currentFloorData.pointTarget}</span>
+              </div>
             </div>
 
           </div>
 
-          {/* Interactive Brass Elevator Panel */}
+          {/* Interactive Brass Bank Elevator Directory */}
           <div className="p-5 rounded-3xl bg-[#0b0f1a] border border-white/[0.08] shadow-xl">
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/[0.06]">
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#d4af37] animate-pulse" />
                 <span className="text-xs font-mono-telemetry uppercase text-[#d4af37] font-bold tracking-wider">
-                  Bank Elevator Directory
+                  Bank Elevator Panel
                 </span>
               </div>
-              <span className="text-[10px] font-mono-telemetry text-slate-500">6 Compartments</span>
+              <span className="text-[10px] font-mono-telemetry text-slate-500">6 Internal Compartments</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -289,9 +370,9 @@ CORE SPECIALIZATIONS:
                   <button
                     key={fl.id}
                     onClick={() => setActiveFloor(fl.id)}
-                    className={`p-2.5 rounded-xl text-left transition-all cursor-pointer flex flex-col justify-between border ${
+                    className={`p-3 rounded-xl text-left transition-all cursor-pointer flex flex-col justify-between border ${
                       isActive
-                        ? 'bg-[#d4af37]/20 border-[#d4af37] text-white shadow-lg shadow-[#d4af37]/15'
+                        ? 'bg-[#d4af37]/20 border-[#d4af37] text-white shadow-lg shadow-[#d4af37]/15 scale-[1.02]'
                         : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.05]'
                     }`}
                   >
@@ -312,22 +393,24 @@ CORE SPECIALIZATIONS:
 
         </div>
 
-        {/* Right Column (7 Cols): Active Compartment Detail Showcase */}
+        {/* ======================================================== */}
+        {/* RIGHT COLUMN: INSIDE COMPARTMENTS ONLY (NO DUMP BELOW) (7 COLS) */}
+        {/* ======================================================== */}
         <div className="lg:col-span-7 space-y-6">
 
-          {/* Compartment Header */}
-          <div className="p-6 rounded-3xl bg-[#090d18] border border-[#d4af37]/30 shadow-xl relative overflow-hidden">
+          {/* Active Compartment Banner */}
+          <div className="p-6 rounded-3xl bg-[#090d18] border border-[#d4af37]/40 shadow-xl relative overflow-hidden">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono-telemetry uppercase tracking-wider text-[#d4af37] font-bold px-2.5 py-0.5 rounded bg-[#d4af37]/10 border border-[#d4af37]/20">
                 {currentFloorData.level} • {currentFloorData.dept}
               </span>
               <span className="text-xs font-mono-telemetry text-emerald-400 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Online & Inspected</span>
+                <span>Host Pointing Active</span>
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
               {currentFloorData.name}
             </h2>
           </div>
@@ -338,19 +421,19 @@ CORE SPECIALIZATIONS:
               
               {/* Executive Clearance Badges */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-emerald-500/30 text-center">
                   <div className="text-2xl font-bold font-mono-telemetry text-emerald-400">99.4%</div>
                   <div className="text-xs text-slate-300 font-semibold mt-1">SLA Reliability</div>
                   <div className="text-[10px] text-slate-500 font-mono-telemetry">TCS European Ops</div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-cyan-500/30 text-center">
                   <div className="text-2xl font-bold font-mono-telemetry text-cyan-400">48ms</div>
                   <div className="text-xs text-slate-300 font-semibold mt-1">SQL Query Latency</div>
                   <div className="text-[10px] text-slate-500 font-mono-telemetry">-96.7% Optimized</div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center col-span-2 sm:col-span-1">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-[#d4af37]/30 text-center col-span-2 sm:col-span-1">
                   <div className="text-2xl font-bold font-mono-telemetry text-[#d4af37]">4+ Yrs</div>
                   <div className="text-xs text-slate-300 font-semibold mt-1">Math Mentorship</div>
                   <div className="text-[10px] text-slate-500 font-mono-telemetry">7 Students 95%+</div>
@@ -377,6 +460,31 @@ CORE SPECIALIZATIONS:
                     <div className="text-slate-400 font-mono-telemetry uppercase text-[10px]">Current Enterprise Client</div>
                     <div className="font-bold text-white mt-0.5">Netherlands Engineering Client</div>
                     <div className="text-slate-400 text-[11px]">200–500 International Users</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Verified Certifications Strip */}
+              <div className="p-5 rounded-3xl bg-[#090d18] border border-white/[0.08] space-y-3">
+                <h4 className="text-xs font-mono-telemetry text-[#d4af37] uppercase font-bold tracking-wider">
+                  Verified Industry Credentials
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono-telemetry">
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-emerald-400 font-bold">ServiceNow</div>
+                    <div className="text-[10px] text-slate-300 mt-0.5">CAD Certified</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-cyan-400 font-bold">ServiceNow</div>
+                    <div className="text-[10px] text-slate-300 mt-0.5">CSA Certified</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-amber-400 font-bold">Anthropic</div>
+                    <div className="text-[10px] text-slate-300 mt-0.5">Claude Dev</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                    <div className="text-purple-400 font-bold">HackerRank</div>
+                    <div className="text-[10px] text-slate-300 mt-0.5">5-Star C++/SQL</div>
                   </div>
                 </div>
               </div>
@@ -492,15 +600,15 @@ CORE SPECIALIZATIONS:
             <div className="space-y-5 animate-in fade-in duration-300">
               
               <div className="grid grid-cols-3 gap-3">
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-emerald-500/30 text-center">
                   <div className="text-xl font-bold font-mono-telemetry text-emerald-400">99.4%</div>
                   <div className="text-xs text-slate-300 mt-1">SLA Rate</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-cyan-500/30 text-center">
                   <div className="text-xl font-bold font-mono-telemetry text-cyan-400">30+ / Wk</div>
                   <div className="text-xs text-slate-300 mt-1">Incident Triage</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#090d18] border border-white/[0.08] text-center">
+                <div className="p-4 rounded-2xl bg-[#090d18] border border-[#d4af37]/30 text-center">
                   <div className="text-xl font-bold font-mono-telemetry text-[#d4af37]">&lt; 2h</div>
                   <div className="text-xs text-slate-300 mt-1">P1/P2 Resolution</div>
                 </div>
