@@ -9,12 +9,13 @@ import {
   ArrowRight,
   Terminal,
   Activity,
-  CheckCircle2
+  CheckCircle2,
+  Building2
 } from 'lucide-react';
 import Canvas3D from './Canvas3D';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Hero({ onOpenRecruiterModal }) {
+export default function Hero({ onOpenRecruiterModal, onEnterBuilding }) {
   const handleScrollToBento = () => {
     const el = document.getElementById('bento');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -23,6 +24,11 @@ export default function Hero({ onOpenRecruiterModal }) {
   const handleScrollToConnect = () => {
     const el = document.getElementById('connect');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleTourBank = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (onEnterBuilding) onEnterBuilding();
   };
 
   return (
@@ -82,21 +88,29 @@ export default function Hero({ onOpenRecruiterModal }) {
             </div>
 
             {/* Primary Action Buttons (NO download resume button) */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2">
+              <button
+                onClick={handleTourBank}
+                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold text-slate-950 bg-gradient-to-r from-[#d4af37] via-[#f59e0b] to-[#b48c36] hover:from-[#e5c052] hover:to-[#c69a3b] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#d4af37]/25 active:scale-[0.98] cursor-pointer"
+              >
+                <Building2 className="w-4 h-4 text-slate-950" />
+                <span>Tour Bank Headquarters</span>
+              </button>
+
               <button
                 onClick={handleScrollToBento}
-                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-[0.98] cursor-pointer"
+                className="px-5 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-200 bento-card hover:border-[#d4af37]/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Explore FinTech Bento</span>
-                <ArrowRight className="w-4 h-4 text-slate-950" />
+                <span>Explore Bento</span>
+                <ArrowRight className="w-4 h-4 text-[#d4af37]" />
               </button>
 
               <button
                 onClick={handleScrollToConnect}
-                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold text-white bento-card hover:border-emerald-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="px-5 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold text-slate-200 bento-card hover:border-emerald-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Mail className="w-4 h-4 text-emerald-400" />
-                <span>Priority Recruiter Connect</span>
+                <span>Priority Connect</span>
               </button>
             </div>
 
