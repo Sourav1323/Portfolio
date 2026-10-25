@@ -43,12 +43,12 @@ const SkillsShowcase = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/[0.04] text-slate-300 border border-white/[0.08]">
-            <Cpu className="w-3.5 h-3.5 text-blue-400" />
-            Core Competency Architecture
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <Cpu className="w-3.5 h-3.5 text-emerald-400" />
+            FinTech & Distributed Systems Architecture
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Major Skills <span className="text-slate-400 font-light">& Visual Benchmarks</span>
+            High-Throughput Skills <span className="text-emerald-400 font-light">& Visual Latency Benchmarks</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
             Interactive competency radar and query latency benchmark graphs backed by 5-star HackerRank ratings and production client impact.

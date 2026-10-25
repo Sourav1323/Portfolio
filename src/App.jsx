@@ -8,6 +8,7 @@ import AIEraAdvantage from './components/AIEraAdvantage';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectsSection from './components/ProjectsSection';
 import CertificationsBadges from './components/CertificationsBadges';
+import SoftSkillsMatrix from './components/SoftSkillsMatrix';
 import ATSRecruiterHub from './components/ATSRecruiterHub';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -172,8 +173,8 @@ function App() {
                 <PageTransitionBanner
                   nextPage="engineering"
                   pageNumber="02"
-                  title="Engineering & AI Systems Architecture"
-                  subtitle="Explore interactive skills sandbox, low-latency SQL benchmarks, and specialized domain architectures."
+                  title="FinTech Engines & High-Throughput Systems"
+                  subtitle="Explore low-latency SQL query benchmarks, deterministic calculation pipelines, and AI-augmented velocity."
                   onSelectPage={handleSelectPage}
                   icon={Cpu}
                 />
@@ -188,8 +189,8 @@ function App() {
                 <PageTransitionBanner
                   nextPage="experience"
                   pageNumber="03"
-                  title="Career Trajectory & Leadership Milestones"
-                  subtitle="Review TCS European client operations, 40% database tuning at Celebal, and verified credentials."
+                  title="Human Leadership, Soft Skills & Enterprise Career"
+                  subtitle="Inspect high-stakes crisis composure at TCS, cross-cultural client empathy, and 4-year mentorship track record."
                   onSelectPage={handleSelectPage}
                   icon={Briefcase}
                 />
@@ -198,14 +199,15 @@ function App() {
 
             {activePage === 'experience' && (
               <div className="animate-in fade-in duration-300 pt-20">
+                <SoftSkillsMatrix />
                 <ExperienceTimeline />
                 <LeadershipSection />
                 <CertificationsBadges />
                 <PageTransitionBanner
                   nextPage="projects"
                   pageNumber="04"
-                  title="Featured Projects & 98.5% ATS Recruiter Hub"
-                  subtitle="Inspect production software architectures, 1-click ATS plain-text copy, and official resume download."
+                  title="Production Ledgers & 98.5% ATS Recruiter Hub"
+                  subtitle="Review production software systems, 1-click ATS plain-text copy, and official resume verification."
                   onSelectPage={handleSelectPage}
                   icon={FolderGit2}
                 />

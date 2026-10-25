@@ -44,20 +44,8 @@ export const executiveHighlights = [
 
 export const industryArchitectures = [
   {
-    id: "enterprise",
-    label: "Enterprise & Cloud Systems",
-    headline: "Mission-Critical Platform Architecture & Governance",
-    description: "Designed for Fortune 500 scale, zero downtime, and automated compliance. Experience delivering for European international enterprise users.",
-    capabilities: [
-      "8+ ServiceNow automated production workflows & script includes",
-      "Salesforce Apex, Visualforce, and Lightning Web Components (LWC)",
-      "MuleSoft API integration & ITIL incident lifecycle governance",
-      "Dual ServiceNow Certified (CAD & CSA) and SAP Cloud ABAP"
-    ]
-  },
-  {
     id: "fintech",
-    label: "High-Throughput & FinTech Systems",
+    label: "High-Throughput FinTech Systems",
     headline: "Low-Latency Transactions, Real-Time Ledgers & ACID Safety",
     description: "Deep personal passion and active experience in financial markets, quantitative logic, and tax/settlement engines engineered for deterministic accuracy.",
     capabilities: [
@@ -65,6 +53,18 @@ export const industryArchitectures = [
       "Sub-second query optimization: Index seeks eliminating 2.4M-row full table scans",
       "Slowly Changing Dimensions (SCD Type 1/2) for immutable audit trails & ledger history",
       "ACID concurrency control preventing race conditions and transaction deadlocks"
+    ]
+  },
+  {
+    id: "enterprise",
+    label: "Enterprise Platforms & Governance",
+    headline: "Mission-Critical Platform Architecture & Governance",
+    description: "Designed for Fortune 500 scale, zero downtime, and automated compliance. Experience delivering for European international enterprise users at TCS.",
+    capabilities: [
+      "8+ ServiceNow automated production workflows & script includes",
+      "Salesforce Apex, Visualforce, and Lightning Web Components (LWC)",
+      "MuleSoft API integration & ITIL incident lifecycle governance",
+      "Dual ServiceNow Certified (CAD & CSA) and SAP Cloud ABAP"
     ]
   },
   {

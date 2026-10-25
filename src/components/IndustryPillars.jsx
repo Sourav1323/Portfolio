@@ -27,17 +27,17 @@ const IndustryPillars = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/[0.04] text-slate-300 border border-white/[0.08]">
-            <Cpu className="w-3.5 h-3.5 text-blue-400" />
-            Specialized Systems Architecture
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+            FinTech & Distributed Architecture
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Computational Strengths Across <br />
-            <span className="text-slate-400 font-light">High-Value Industry Domains</span>
+            <span className="text-emerald-400 font-light">FinTech & High-Throughput Systems</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            Grounded in core Computer Science principles, deterministic state logic, and low-latency data pipelines — 
-            adaptable to enterprise scale, transactional systems, and real-time interactive computation.
+            Engineered for financial transaction accuracy, sub-50ms query indexes, deterministic state transitions, 
+            and zero-downtime SLA compliance at European enterprise scale.
           </p>
         </div>
 

@@ -8,7 +8,8 @@ import {
   Target, 
   Layers, 
   Check, 
-  Sparkles
+  Sparkles,
+  HeartHandshake
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
@@ -34,10 +35,10 @@ const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, onOpenResumeMo
   };
 
   const navPages = [
-    { id: 'overview', label: 'Overview', icon: Compass, key: '1' },
-    { id: 'engineering', label: 'Engineering', icon: Cpu, key: '2' },
-    { id: 'experience', label: 'Career', icon: Briefcase, key: '3' },
-    { id: 'projects', label: 'Projects & ATS', icon: FolderGit2, key: '4' },
+    { id: 'overview', label: 'Terminal', icon: Compass, key: '1' },
+    { id: 'engineering', label: 'FinTech Engines', icon: Cpu, key: '2' },
+    { id: 'experience', label: 'Leadership & EQ', icon: HeartHandshake, key: '3' },
+    { id: 'projects', label: 'Ledgers & ATS', icon: FolderGit2, key: '4' },
   ];
 
   return (

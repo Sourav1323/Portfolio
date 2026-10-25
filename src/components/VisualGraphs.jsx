@@ -17,12 +17,12 @@ export const CompetencyRadarChart = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const competencies = [
-    { label: "Algorithms (5-Star)", value: 95, detail: "HackerRank C++ & SQL Problem Solving" },
-    { label: "Java & Spring Boot", value: 92, detail: "OOP, Microservices, ACID Concurrency" },
-    { label: "SQL Optimization", value: 94, detail: "40% Performance Acceleration at Celebal" },
-    { label: "Enterprise Automation", value: 90, detail: "Dual ServiceNow (CAD/CSA) + SAP" },
-    { label: "AI Augmentation", value: 96, detail: "Anthropic Certified Claude Developer" },
-    { label: "Low-Latency Logic", value: 88, detail: "Deterministic C++ & FinTech Engines" },
+    { label: "Algorithms (5-Star)", value: 95, detail: "5-Star HackerRank C++ & SQL Problem Solving", type: "Technical" },
+    { label: "FinTech & Distributed Systems", value: 92, detail: "Java 17, Spring Boot, ACID Concurrency Control", type: "Technical" },
+    { label: "Database Tuning", value: 94, detail: "40% SQL Query Acceleration at Celebal", type: "Technical" },
+    { label: "Crisis Management", value: 95, detail: "TCS Production SLA Escalation Resolution (200-500 EU Users)", type: "Soft Skill" },
+    { label: "Stakeholder Empathy", value: 96, detail: "Cross-Cultural European Client Technical POC", type: "Soft Skill" },
+    { label: "People Mentorship", value: 98, detail: "4-Year Math Mentorship (7 Students to 95%+ Marks)", type: "Soft Skill" },
   ];
 
   const size = 300;
@@ -49,15 +49,15 @@ export const CompetencyRadarChart = () => {
     <div className="p-5 sm:p-6 rounded-2xl pro-card space-y-4">
       <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
+          <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
             <Cpu className="w-4 h-4" />
           </div>
           <span className="text-xs font-semibold text-white uppercase tracking-wider">
-            SDE Competency Radar
+            FinTech SDE & EQ Competency Radar
           </span>
         </div>
         <span className="text-[10px] font-mono-code text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-          93.2% Overall Index
+          95.0% SDE + EQ Index
         </span>
       </div>
 
