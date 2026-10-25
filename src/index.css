@@ -5,105 +5,62 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Theme 1: Executive Obsidian (Linear / Stripe SDE Standard) - Default */
-  body.theme-obsidian {
-    @apply bg-[#080b12] text-slate-200 selection:bg-blue-500/30 selection:text-blue-200;
+  body {
+    @apply bg-[#080c15] text-slate-200 selection:bg-blue-500/25 selection:text-blue-100;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-image: 
-      radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 90% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 50% 90%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
-    background-attachment: fixed;
-  }
-
-  /* Theme 2: FinTech & High-Frequency Terminal (Goldman Sachs / Bloomberg) */
-  body.theme-fintech {
-    @apply bg-[#060a14] text-slate-200 selection:bg-amber-500/30 selection:text-amber-200;
-    background-image: 
-      radial-gradient(circle at 20% 10%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
-      radial-gradient(circle at 80% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
-    background-attachment: fixed;
-  }
-
-  /* Theme 3: Clean Tech Minimalist (Apple / Vercel Pro) */
-  body.theme-minimal {
-    @apply bg-[#090d16] text-slate-200 selection:bg-sky-500/30 selection:text-sky-200;
-    background-image: 
-      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
-      radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
-    background-attachment: fixed;
-  }
-
-  /* Theme 4: Cosmic Twilight Aurora */
-  body.theme-cosmic {
-    @apply bg-[#090d1e] text-slate-200 selection:bg-purple-500/30 selection:text-purple-200;
-    background-image: 
-      radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.07) 0%, transparent 40%),
-      radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
+      radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.04) 0%, transparent 45%),
+      radial-gradient(circle at 85% 25%, rgba(99, 102, 241, 0.03) 0%, transparent 45%),
+      radial-gradient(circle at 50% 85%, rgba(14, 165, 233, 0.03) 0%, transparent 50%);
     background-attachment: fixed;
   }
 }
 
-/* Custom Scrollbar */
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080b12;
+  background: #080c15;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
-  border: 2px solid #080b12;
+  border: 2px solid #080c15;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(147, 197, 253, 0.4);
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* Professional Glass Card Standard */
-.aurora-card {
-  background: rgba(15, 20, 32, 0.55);
+/* Linear / Stripe Style Smooth Glass Card */
+.pro-card {
+  background: rgba(15, 22, 36, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pro-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.pro-card-glow {
+  background: linear-gradient(145deg, rgba(20, 29, 48, 0.6), rgba(13, 18, 30, 0.7));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-.aurora-card:hover {
-  border-color: rgba(147, 197, 253, 0.25);
-  box-shadow: 0 30px 60px -20px rgba(59, 130, 246, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  transform: translateY(-4px);
-}
-
-.aurora-card-glow {
-  background: linear-gradient(135deg, rgba(20, 28, 48, 0.6), rgba(12, 17, 30, 0.7));
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(147, 197, 253, 0.22);
-  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-}
-
-/* FinTech Terminal Accents */
-body.theme-fintech .aurora-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 30px 60px -20px rgba(245, 158, 11, 0.15), inset 0 1px 0 0 rgba(245, 158, 11, 0.15);
-}
-
-body.theme-fintech .aurora-card-glow {
-  background: linear-gradient(135deg, rgba(22, 28, 18, 0.65), rgba(8, 14, 26, 0.75));
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.15), inset 0 1px 0 0 rgba(245, 158, 11, 0.1);
-}
-
-/* Atmospheric Glow Highlights */
-.aurora-blob {
-  filter: blur(140px);
-  border-radius: 9999px;
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
+/* Monospace font utility */
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
 }
