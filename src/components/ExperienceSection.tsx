@@ -176,9 +176,26 @@ export const ExperienceSection: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      {/* Avatar Thumbnail */}
+                      {/* Mobile Minimal Icon */}
                       <div
-                        className={`w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 transition-all border ${
+                        className={`sm:hidden w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 border ${
+                          isSelected
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40'
+                            : 'bg-white/5 text-[#D7E2EA]/50 border-white/10'
+                        }`}
+                      >
+                        {exp.type === 'fresher' ? (
+                          <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                        ) : exp.type === 'intern' ? (
+                          <Layers className="w-3.5 h-3.5 text-purple-400" />
+                        ) : (
+                          <GraduationCap className="w-3.5 h-3.5 text-cyan-400" />
+                        )}
+                      </div>
+
+                      {/* Desktop Avatar Thumbnail */}
+                      <div
+                        className={`hidden sm:flex w-12 h-12 rounded-xl overflow-hidden items-center justify-center flex-shrink-0 transition-all border ${
                           isSelected
                             ? 'bg-emerald-500/20 border-emerald-400 ring-2 ring-emerald-400/40 shadow-[0_0_15px_rgba(16,185,129,0.3)]'
                             : 'bg-black/40 border-white/10 hover:border-white/30'
@@ -273,8 +290,8 @@ export const ExperienceSection: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* ── RIGHT COLUMN (5 Cols): Compact Professional 3D Persona Showcase ── */}
-          <div className="lg:col-span-5 flex flex-col items-center">
+          {/* ── RIGHT COLUMN (5 Cols): Compact Professional 3D Persona Showcase (Hidden on Mobile) ── */}
+          <div className="hidden lg:flex lg:col-span-5 flex-col items-center">
             <div className="w-full p-5 sm:p-6 rounded-3xl bg-[#0A101C]/90 border border-emerald-500/25 backdrop-blur-2xl shadow-2xl flex flex-col items-center relative overflow-hidden">
               {/* Pedestal Aura */}
               <div

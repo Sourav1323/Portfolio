@@ -4,49 +4,45 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 interface AnimatedTextProps {
   text: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-interface CharProps {
-  char: string;
+interface WordProps {
+  word: string;
   progress: MotionValue<number>;
   range: [number, number];
 }
 
-const Character: React.FC<CharProps> = ({ char, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+const Word: React.FC<WordProps> = ({ word, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.25, 1]);
 
   return (
-    <span className="relative inline-block">
-      {/* Invisible placeholder for natural text flow and line wrapping */}
-      <span className="invisible select-none">{char}</span>
-      {/* Animated character overlaid exactly */}
-      <motion.span style={{ opacity }} className="absolute inset-0 select-text">
-        {char}
-      </motion.span>
-    </span>
+    <motion.span style={{ opacity }} className="inline-block mr-[0.3em] select-text">
+      {word}
+    </motion.span>
   );
 };
 
-export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '' }) => {
+export const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style }) => {
   const containerRef = useRef<HTMLParagraphElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 0.8', 'end 0.2'],
+    offset: ['start 0.85', 'end 0.35'],
   });
 
-  const characters = text.split('');
-  const totalChars = characters.length;
+  const words = text.split(/\s+/).filter(Boolean);
+  const totalWords = words.length;
 
   return (
-    <p ref={containerRef} className={className}>
-      {characters.map((char, index) => {
-        const start = index / totalChars;
-        const end = Math.min(1, (index + 1) / totalChars);
+    <p ref={containerRef} className={className} style={style}>
+      {words.map((word, index) => {
+        const start = index / totalWords;
+        const end = Math.min(1, (index + 1) / totalWords);
         return (
-          <Character
+          <Word
             key={index}
-            char={char}
+            word={word}
             progress={scrollYProgress}
             range={[start, end]}
           />
