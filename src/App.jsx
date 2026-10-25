@@ -13,9 +13,8 @@ import ATSRecruiterHub from './components/ATSRecruiterHub';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import RecruiterModal from './components/RecruiterModal';
-import ResumeDownloadModal from './components/ResumeDownloadModal';
 import { 
-  FileDown, 
+  Mail, 
   Target, 
   ArrowRight, 
   Cpu, 
@@ -61,7 +60,6 @@ const PageTransitionBanner = ({ nextPage, pageNumber, title, subtitle, onSelectP
 
 function App() {
   const [recruiterModalOpen, setRecruiterModalOpen] = useState(false);
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [activePage, setActivePage] = useState(() => {
     const hash = window.location.hash.replace('#', '');
     if (['overview', 'engineering', 'experience', 'projects'].includes(hash)) {
@@ -108,24 +106,14 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const triggerDownloadConfetti = () => {
-    confetti({
-      particleCount: 90,
-      spread: 75,
-      origin: { y: 0.8 },
-      colors: ['#ffffff', '#60a5fa', '#34d399', '#818cf8']
-    });
-  };
-
   return (
-    <div className="min-h-screen relative bg-[#080c15] text-slate-200">
+    <div className="min-h-screen relative bg-[#03070d] text-slate-200">
       
       {/* Top Glass Navbar & Floating Capsule Dock */}
       <Navbar 
         activePage={activePage}
         onSelectPage={handleSelectPage}
         onOpenRecruiterModal={() => setRecruiterModalOpen(true)}
-        onOpenResumeModal={() => setResumeModalOpen(true)}
         isAllView={isAllView}
         onToggleAllView={handleToggleAllView}
       />
@@ -137,7 +125,6 @@ function App() {
           <div>
             <Hero 
               onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
-              onOpenResumeModal={() => setResumeModalOpen(true)}
             />
             <SkillsShowcase />
             <div id="architectures">
@@ -155,7 +142,7 @@ function App() {
               <ProjectsSection />
             </div>
             <div id="ats-hub">
-              <ATSRecruiterHub onOpenResumeModal={() => setResumeModalOpen(true)} />
+              <ATSRecruiterHub />
             </div>
             <div id="contact">
               <ContactSection />
@@ -168,7 +155,6 @@ function App() {
               <div className="animate-in fade-in duration-300">
                 <Hero 
                   onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
-                  onOpenResumeModal={() => setResumeModalOpen(true)}
                 />
                 <PageTransitionBanner
                   nextPage="engineering"
@@ -207,7 +193,7 @@ function App() {
                   nextPage="projects"
                   pageNumber="04"
                   title="Production Ledgers & 98.5% ATS Recruiter Hub"
-                  subtitle="Review production software systems, 1-click ATS plain-text copy, and official resume verification."
+                  subtitle="Review production software systems, 1-click ATS plain-text copy, and direct recruiter contact."
                   onSelectPage={handleSelectPage}
                   icon={FolderGit2}
                 />
@@ -217,7 +203,7 @@ function App() {
             {activePage === 'projects' && (
               <div className="animate-in fade-in duration-300 pt-20">
                 <ProjectsSection />
-                <ATSRecruiterHub onOpenResumeModal={() => setResumeModalOpen(true)} />
+                <ATSRecruiterHub />
                 <ContactSection />
               </div>
             )}
@@ -226,39 +212,39 @@ function App() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenResumeModal={() => setResumeModalOpen(true)} />
+      <Footer />
 
       {/* Recruiter Fast-Track Modal */}
       <RecruiterModal 
         isOpen={recruiterModalOpen} 
         onClose={() => setRecruiterModalOpen(false)}
-        onOpenResumeModal={() => setResumeModalOpen(true)} 
-      />
-
-      {/* Company Email Lead Capture Resume Modal */}
-      <ResumeDownloadModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
       />
 
       {/* Floating Recruiter Quick Access Bar (Bottom Right on Desktop) */}
       <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 p-1.5 rounded-2xl pro-card-glow shadow-2xl">
         <button
           onClick={() => setRecruiterModalOpen(true)}
-          className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 transition-all flex items-center gap-1.5 cursor-pointer"
-          title="Open Recruiter Summary"
+          className="px-3.5 py-2 rounded-xl text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/60 transition-all flex items-center gap-1.5 cursor-pointer"
+          title="Open Recruiter Dossier"
         >
-          <Target className="w-3.5 h-3.5 text-blue-400" />
+          <Target className="w-3.5 h-3.5 text-emerald-400" />
           <span>ATS Dossier</span>
         </button>
 
         <button
-          onClick={() => setResumeModalOpen(true)}
-          className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer"
-          title="Download PDF Resume"
+          onClick={() => {
+            const contactEl = document.getElementById('contact');
+            if (contactEl) {
+              contactEl.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = `mailto:${personalInfo.email}?subject=Priority%20Engineering%20Inquiry%20-%20Sourav%20Gupta`;
+            }
+          }}
+          className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center gap-1.5 shadow-md shadow-emerald-500/20 active:scale-95 cursor-pointer"
+          title="Direct Contact"
         >
-          <FileDown className="w-3.5 h-3.5 text-slate-950" />
-          <span>Resume (PDF)</span>
+          <Mail className="w-3.5 h-3.5 text-slate-950" />
+          <span>Priority Connect</span>
         </button>
       </div>
 

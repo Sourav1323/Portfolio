@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { 
   X, 
-  FileDown, 
   Copy, 
   Check, 
   ShieldCheck, 
   Sparkles, 
   Mail, 
   Phone, 
-  MapPin
+  MapPin,
+  Send
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { personalInfo, atsResumeText } from '../data/portfolioData';
 
-const RecruiterModal = ({ isOpen, onClose, onOpenResumeModal }) => {
+const RecruiterModal = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
@@ -125,20 +124,17 @@ const RecruiterModal = ({ isOpen, onClose, onOpenResumeModal }) => {
 
         {/* Action Buttons */}
         <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={() => {
-              onClose();
-              if (onOpenResumeModal) onOpenResumeModal();
-            }}
-            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+          <a
+            href={`mailto:${personalInfo.email}?subject=Priority Technical Interview Request&body=Hi Sourav,%0D%0A%0D%0AWe reviewed your FinTech Systems Engineering profile and would like to schedule a conversation regarding an engineering role at our company.`}
+            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 cursor-pointer"
           >
-            <FileDown className="w-4 h-4" />
-            <span>Download Official PDF Resume</span>
-          </button>
+            <Mail className="w-4 h-4 text-slate-950" />
+            <span>Direct Recruiter Transmission</span>
+          </a>
 
           <button
             onClick={handleCopyText}
-            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-medium text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 transition-all flex items-center justify-center gap-2"
+            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-medium text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             {copied ? (
               <>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Target, 
-  FileDown, 
   Copy, 
   Check, 
   Sparkles, 
@@ -9,7 +8,9 @@ import {
   FileText, 
   ChevronDown,
   ChevronUp,
-  BarChart3
+  BarChart3,
+  Mail,
+  Send
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalInfo, atsResumeText } from '../data/portfolioData';
@@ -31,7 +32,7 @@ const atsKeywords = {
   "Cloud & Tools": ["Salesforce LWC", "SAP Cloud ABAP", "MuleSoft", "Azure", "Git", "VS Code", "IntelliJ IDEA"]
 };
 
-const ATSRecruiterHub = ({ onOpenResumeModal }) => {
+const ATSRecruiterHub = () => {
   const [copiedResume, setCopiedResume] = useState(false);
   const [copiedPitch, setCopiedPitch] = useState(false);
   const [showFullText, setShowFullText] = useState(false);
@@ -137,29 +138,29 @@ Resume: https://github.com/Sourav1323 | Contact: (+91) 8619377860 | souravgupta.
                   Recruiter Fast-Track Toolkit
                 </h3>
                 <p className="text-xs text-slate-400">
-                  Download the official PDF, copy plaintext directly into ATS software, or grab a ready-made outreach pitch.
+                  Transmit direct priority outreach, copy plaintext dossier directly into ATS software, or grab a 60-second executive pitch.
                 </p>
               </div>
 
               {/* Action Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 
-                {/* Download Real PDF via Company Email Modal */}
-                <button
-                  onClick={onOpenResumeModal}
-                  className="p-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-semibold transition-all flex flex-col justify-between shadow-sm group active:scale-[0.98] cursor-pointer text-left"
+                {/* Direct Priority Outreach Card */}
+                <a
+                  href={`mailto:${personalInfo.email}?subject=Priority Technical Interview Request&body=Hi Sourav,%0D%0A%0D%0AWe reviewed your FinTech Systems Engineering profile and would like to schedule a conversation regarding an engineering role at our company.`}
+                  className="p-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold transition-all flex flex-col justify-between shadow-md shadow-emerald-500/20 group active:scale-[0.98] cursor-pointer text-left"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <FileDown className="w-5 h-5 text-slate-900 group-hover:scale-105 transition-transform" />
-                    <span className="text-[10px] uppercase font-bold bg-slate-900/10 px-2 py-0.5 rounded text-slate-900">
-                      Official PDF
+                    <Mail className="w-5 h-5 text-slate-950 group-hover:scale-105 transition-transform" />
+                    <span className="text-[10px] uppercase font-bold bg-slate-950/15 px-2 py-0.5 rounded text-slate-950">
+                      Direct Email
                     </span>
                   </div>
                   <div>
-                    <div className="text-sm font-bold">Download Official Resume</div>
-                    <div className="text-[11px] text-slate-600 font-medium">Verified Recruiter Access</div>
+                    <div className="text-sm font-bold">Initiate Direct Outreach</div>
+                    <div className="text-[11px] text-slate-800 font-medium">Pre-addressed interview request</div>
                   </div>
-                </button>
+                </a>
 
                 {/* Copy Plaintext */}
                 <button

@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  FileDown, 
   Target, 
   ShieldCheck, 
   Zap, 
@@ -8,31 +7,46 @@ import {
   Award,
   Sparkles,
   TrendingUp,
-  HeartHandshake
+  HeartHandshake,
+  Mail,
+  ArrowRight
 } from 'lucide-react';
 import Canvas3D from './Canvas3D';
 import { personalInfo } from '../data/portfolioData';
 
-const Hero = ({ onOpenRecruiterModal, onOpenResumeModal }) => {
+const Hero = ({ onOpenRecruiterModal, onSelectPage }) => {
+  const handleContactClick = () => {
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    } else if (onSelectPage) {
+      onSelectPage('projects');
+      setTimeout(() => {
+        const el = document.getElementById('contact');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    }
+  };
+
   return (
     <section className="relative min-h-[85vh] pt-24 sm:pt-32 pb-16 flex flex-col justify-center overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full relative z-10">
         
-        {/* Live FinTech Terminal Ticker Bar */}
-        <div className="p-2.5 sm:p-3 rounded-2xl bg-slate-900/80 border border-emerald-500/20 backdrop-blur-xl mb-8 flex flex-wrap items-center justify-between gap-3 text-xs font-mono shadow-lg shadow-emerald-950/20">
+        {/* Live FinTech Terminal Status Ribbon */}
+        <div className="p-2.5 sm:p-3 rounded-2xl bg-slate-900/80 border border-emerald-500/20 backdrop-blur-xl mb-8 flex flex-wrap items-center justify-between gap-3 text-xs font-mono shadow-xl shadow-black/40">
           <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
             <span className="flex items-center gap-1.5 text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/30">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              FINTECH TERMINAL
+              FINTECH TERMINAL v3.0
             </span>
             <span className="text-slate-300">
-              TCS/SLA: <strong className="text-emerald-400">99.4% [STABLE]</strong>
+              TCS/SLA: <strong className="text-emerald-400 font-semibold">99.4% [STABLE]</strong>
             </span>
             <span className="text-slate-300">
-              SQL/LATENCY: <strong className="text-emerald-400">48ms (-96.7%)</strong>
+              SQL/LATENCY: <strong className="text-emerald-400 font-semibold">48ms (-96.7%)</strong>
             </span>
             <span className="text-slate-300 hidden md:inline">
-              ALPHA: <strong className="text-blue-400">+40% QUERY BOOST</strong>
+              ALPHA: <strong className="text-blue-400 font-semibold">+40% QUERY BOOST</strong>
             </span>
           </div>
 
@@ -69,14 +83,14 @@ const Hero = ({ onOpenRecruiterModal, onOpenResumeModal }) => {
               </p>
             </div>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons (NO download resume button) */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
               <button
-                onClick={onOpenResumeModal}
+                onClick={handleContactClick}
                 className="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-[0.98] cursor-pointer"
               >
-                <FileDown className="w-4 h-4 text-slate-950" />
-                <span>Download Resume (PDF)</span>
+                <Mail className="w-4 h-4 text-slate-950" />
+                <span>Initiate Priority Connect</span>
               </button>
 
               <button
@@ -90,7 +104,7 @@ const Hero = ({ onOpenRecruiterModal, onOpenResumeModal }) => {
 
             {/* Core Stack Badges */}
             <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs text-slate-400">
-              {['FinTech Ledgers', 'Java 17', 'Spring Boot', 'SQL (40% Tuning)', 'ACID Concurrency', 'ServiceNow CAD', 'C++ (5-Star)', 'Crisis Management'].map((tag) => (
+              {['FinTech Ledgers', 'Java 17', 'Spring Boot', 'SQL (40% Tuning)', 'ACID Concurrency', 'ServiceNow CAD', 'C++ (5-Star)', 'Crisis Composure'].map((tag) => (
                 <span 
                   key={tag} 
                   className="px-2.5 py-1 rounded-lg bg-slate-900/70 border border-slate-800 text-slate-300 font-mono text-[11px]"
