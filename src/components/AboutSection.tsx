@@ -9,7 +9,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen w-full flex flex-col justify-center items-center px-5 sm:px-8 md:px-10 py-20 bg-[#0C0C0C] overflow-hidden select-none"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center px-4 sm:px-8 md:px-10 py-14 sm:py-20 bg-[#0C0C0C] overflow-hidden select-none"
     >
       {/* ── TOP-LEFT: 3D Terminal Orb (Desktop only) ── */}
       <div className="hidden lg:block absolute top-[6%] left-[2%] sm:left-[3%] md:left-[5%] z-10 pointer-events-none">

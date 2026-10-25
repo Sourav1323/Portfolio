@@ -24,6 +24,7 @@ interface ExperienceItem {
   role: string;
   company: string;
   stage: string;
+  shortLabel: string;
   avatarImg: string;
   avatarScale: number;
   auraColor: string;
@@ -42,10 +43,11 @@ const EXPERIENCES: ExperienceItem[] = [
   {
     id: 'tcs',
     type: 'fresher',
-    period: 'December 2025 – Present',
-    role: 'Assistant System Engineer (FinTech SDE)',
-    company: 'Tata Consultancy Services (TCS), Bangalore',
-    stage: 'Current Role · Systems Engineering',
+    period: 'Dec 2025 – Present',
+    role: 'Assistant System Engineer Trainee',
+    company: 'Tata Consultancy Services (TCS) · Bangalore',
+    stage: 'Current Role · Enterprise Systems & Client Support',
+    shortLabel: 'TCS',
     avatarImg: actionFigureTransparent,
     avatarScale: 1.15,
     auraColor: '#10B981',
@@ -53,77 +55,107 @@ const EXPERIENCES: ExperienceItem[] = [
       'radial-gradient(circle, rgba(16,185,129,0.4) 0%, rgba(245,158,11,0.15) 50%, transparent 75%)',
     badge: 'TCS ON-THE-SPOT AWARD · NETHERLANDS CLIENT POC',
     summary:
-      'Primary technical point of contact for an international Netherlands banking client (200–500 active users), delivering 99.4% SLA adherence and automated server workflows.',
+      'Support international Netherlands enterprise client (200–500 active users), resolving 30+ weekly critical incidents with 4–8 ServiceNow workflow automations.',
     highlights: [
-      'Primary POC for Netherlands banking client (200–500 users), resolving 30+ weekly critical incidents with 99.4% SLA adherence.',
-      'Engineered and maintained 4–8 ServiceNow workflow automations for continuous server and network switch uptime.',
-      'Accelerated engineering output using Anthropic Claude API prompt pipelines and GitHub Copilot.',
+      'Support a Netherlands-based enterprise client serving 200–500 users; resolve 30+ technical issues weekly through troubleshooting, root-cause analysis, and stakeholder communication.',
+      'Maintain 4–8 ServiceNow workflow automations and document resolutions; use Claude API and GitHub Copilot for coding support, debugging, and documentation, validating generated outputs.',
+      'Completed Java and MuleSoft onboarding; gained exposure to REST APIs, Azure/Microsoft 365 applications, and enterprise SDLC.',
       'Recipient of the prestigious TCS On-the-Spot Award for client delivery excellence.',
     ],
-    skills: ['FinTech Systems', 'Java 17', 'Spring Boot', 'ServiceNow CAD', 'Enterprise SLAs (99.4%)', 'MuleSoft'],
+    skills: ['Java 17', 'ServiceNow CAD', 'Claude API', 'MuleSoft', 'Azure/M365', 'Incident Management'],
     stats: [
-      { label: 'Client Concurrency', val: '200–500 Users' },
-      { label: 'SLA Adherence', val: '99.4%' },
-      { label: 'Incident Velocity', val: '30+/Week' },
-      { label: 'Certification', val: 'ServiceNow CAD' },
+      { label: 'Client Users', val: '200–500 Users' },
+      { label: 'Issue Resolution', val: '30+ Weekly' },
+      { label: 'Automations', val: '4–8 ServiceNow' },
+      { label: 'Recognition', val: 'TCS On-the-Spot' },
     ],
   },
   {
-    id: 'enterprise-intern',
+    id: 'kloudeva',
     type: 'intern',
-    period: '2023 – November 2025',
-    role: 'High-Throughput Systems & Database Optimization',
-    company: 'Enterprise Projects & Data Warehousing',
-    stage: 'Enterprise Experience · Backend & DB',
+    period: 'Nov – Dec 2024',
+    role: 'Software Developer Intern (Salesforce)',
+    company: 'Kloudeva LLC · Remote',
+    stage: 'Salesforce & Cloud Engineering',
+    shortLabel: 'Kloudeva',
+    avatarImg: executive3DTransparent,
+    avatarScale: 1.05,
+    auraColor: '#38BDF8',
+    glowGradient:
+      'radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(99,102,241,0.15) 50%, transparent 75%)',
+    badge: 'SALESFORCE APEX · LIGHTNING WEB COMPONENTS',
+    summary:
+      'Customized enterprise Salesforce applications using Apex, Visualforce, and Lightning Web Components (LWC) within an Agile SDLC.',
+    highlights: [
+      'Customized Salesforce applications using Apex, Visualforce, and Lightning Web Components (LWC).',
+      'Implemented business logic, validation rules, triggers, and automated backend workflow automations.',
+      'Worked within an Agile SDLC and gained practical exposure to cloud application architecture and deployment pipelines.',
+    ],
+    skills: ['Salesforce Apex', 'Lightning Web Components (LWC)', 'Visualforce', 'Triggers & Workflows', 'Validation Rules', 'Agile SDLC'],
+    stats: [
+      { label: 'Platform', val: 'Salesforce CRM' },
+      { label: 'Core Stack', val: 'Apex & LWC' },
+      { label: 'Automation', val: 'Triggers & Rules' },
+      { label: 'Delivery', val: 'Agile SDLC' },
+    ],
+  },
+  {
+    id: 'celebal',
+    type: 'intern',
+    period: 'May – Jul 2024',
+    role: 'SQL Developer Intern',
+    company: 'Celebal Technologies · Jaipur',
+    stage: 'Database Tuning & Data Warehousing',
+    shortLabel: 'Celebal',
     avatarImg: executive3DTransparent,
     avatarScale: 1.05,
     auraColor: '#A855F7',
     glowGradient:
       'radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(14,165,233,0.15) 50%, transparent 75%)',
-    badge: '+40% SQL LATENCY SPEEDUP · HIGH CONCURRENCY',
+    badge: '+40% SQL LATENCY SPEEDUP · DATA WAREHOUSING',
     summary:
-      'Engineered transactional backends, SQL execution plan tuning, and Slowly Changing Dimensions for high-volume data warehouses.',
+      'Optimized high-volume database queries by up to 40% and implemented Slowly Changing Dimensions (SCD Type 1 & 2) in enterprise data warehousing.',
     highlights: [
-      'Optimized database queries and indexing strategies across large datasets, slashing query latency by up to 40%.',
-      'Architected Slowly Changing Dimensions (SCD Type 1 & 2) and early-arriving facts for data warehousing.',
-      'Built Shringar doorstep platform (shipped in 1 month, cut bugs ~80%) and Java Parcel Management with ACID concurrency.',
-      'Authored Salesforce Apex triggers, Visualforce pages, and automated backend CRM workflows.',
+      'Optimized SQL queries and indexing across large datasets, improving query performance by up to 40%.',
+      'Worked on schema design, DDL, stored functions, and data-processing workflows.',
+      'Applied Slowly Changing Dimensions (SCD Type 1 & 2) and early-arriving-fact handling in a data warehousing assignment.',
     ],
-    skills: ['SQL Optimization', 'Spring Boot', 'ACID Concurrency', 'Data Warehousing (SCD)', 'Salesforce Apex', 'REST APIs'],
+    skills: ['SQL Optimization', 'Schema Design', 'Data Warehousing', 'SCD Type 1 & 2', 'DDL & Functions', 'Query Indexing'],
     stats: [
-      { label: 'Query Tuning', val: '-40% Latency' },
-      { label: 'Throughput', val: '100+ Txns/Batch' },
-      { label: 'Data Warehouse', val: 'SCD Type 1 & 2' },
-      { label: 'Code Quality', val: '~80% Less Bugs' },
+      { label: 'Query Tuning', val: '+40% Speedup' },
+      { label: 'Architecture', val: 'Data Warehouse' },
+      { label: 'Technique', val: 'SCD Type 1 & 2' },
+      { label: 'Location', val: 'Jaipur, RJ' },
     ],
   },
   {
-    id: 'college',
+    id: 'jecrc',
     type: 'college',
-    period: '2020 – 2023',
-    role: 'Algorithmic Foundations & Mentorship',
-    company: 'University & Independent Problem Solving',
-    stage: 'Foundational Mastery · Algorithms & DSA',
+    period: '2021 – 2025',
+    role: 'B.Tech in Information Technology',
+    company: 'Jaipur Engineering College and Research Center (JECRC)',
+    stage: 'Undergraduate Engineering & DSA Foundations',
+    shortLabel: 'JECRC',
     avatarImg: student3DTransparent,
     avatarScale: 0.95,
     auraColor: '#00F5FF',
     glowGradient:
       'radial-gradient(circle, rgba(0,245,255,0.3) 0%, rgba(59,130,246,0.12) 50%, transparent 75%)',
-    badge: '200+ LEETCODE SOLVED · COMPUTATIONAL COMPLEXITY',
+    badge: 'CGPA: 8.4 / 10 · 200+ LEETCODE PROBLEMS SOLVED',
     summary:
-      'Forged ironclad fundamentals in Object-Oriented Programming, C++, Java, data structures, and algorithmic complexity analysis.',
+      'Completed undergraduate study in Information Technology (CGPA: 8.4) with strong mastery in DSA, Java OOP, relational database design, and competitive coding.',
     highlights: [
+      'Completed undergraduate degree in Information Technology with CGPA 8.4, mastering DSA, OOP, DBMS, and software engineering.',
       'Solved 200+ LeetCode algorithmic problems covering Trees, Graphs, Dynamic Programming, and Greedy Algorithms.',
-      'Extensive problem-solving mastery in C++, Java OOP, and relational SQL database modeling.',
-      'Ranked in the Top 20 of 250 teams nationwide in high-intensity 24-hr Smart City Hackathon.',
-      'Tutored mathematics for 4 years at BLJ Classes, mentoring 7 students to score 95%+ in examinations.',
+      'Applied core programming and database concepts in Java full-stack projects (Shringar doorstep platform and Parcel Management).',
+      'Participated in 5 hackathons; Smart City Hackathon semi-finalist, and Pink City Healthcare team ranked Top 20 of 250 teams.',
     ],
-    skills: ['C++', 'Java 17', 'Data Structures (DSA)', 'Algorithms', 'SQL Schema', 'OOP Design'],
+    skills: ['DSA & Algorithms', 'Java 17', 'C++', 'OOP / DBMS', 'SQL Schema', 'Full-Stack Web'],
     stats: [
-      { label: 'LeetCode Solved', val: '200+ Problems' },
-      { label: 'DSA Focus', val: 'Trees, DP, Graphs' },
+      { label: 'Degree', val: 'B.Tech IT' },
+      { label: 'Academic CGPA', val: '8.4 / 10' },
+      { label: 'LeetCode Solved', val: '200+ Solved' },
       { label: 'Hackathon Rank', val: 'Top 20 / 250' },
-      { label: 'Mentorship', val: '4 Yrs Math Tutor' },
     ],
   },
 ];
@@ -208,7 +240,7 @@ export const ExperienceSection: React.FC = () => {
                         />
                       </div>
 
-                      <div className="flex flex-col min-w-0">
+                      <div className="flex flex-col min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] sm:text-[11px] font-mono text-emerald-400 font-semibold uppercase">
                             {exp.period}
@@ -220,10 +252,10 @@ export const ExperienceSection: React.FC = () => {
                             </span>
                           )}
                         </div>
-                        <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wide truncate">
+                        <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wide leading-snug">
                           {exp.role}
                         </h3>
-                        <span className="text-[10px] sm:text-[11px] font-mono text-[#D7E2EA]/60 truncate">
+                        <span className="text-[10px] sm:text-[11px] font-mono text-[#D7E2EA]/60 line-clamp-1">
                           {exp.company}
                         </span>
                       </div>
@@ -247,19 +279,28 @@ export const ExperienceSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.25 }}
-                className="p-5 sm:p-6 rounded-2xl bg-[#0D1422]/90 border border-emerald-500/30 backdrop-blur-xl flex flex-col gap-4 shadow-xl"
+                className="p-4 sm:p-6 rounded-2xl bg-[#0D1422]/90 border border-emerald-500/30 backdrop-blur-xl flex flex-col gap-3.5 sm:gap-4 shadow-xl"
               >
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-mono text-cyan-300 uppercase tracking-widest">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] font-mono text-cyan-300 uppercase tracking-wider">
                       {activeExp.company}
                     </span>
-                    <h4 className="text-sm sm:text-base font-bold text-white uppercase mt-0.5">
+                    <h4 className="text-sm sm:text-base font-bold text-white uppercase mt-0.5 leading-snug">
                       {activeExp.role}
                     </h4>
                   </div>
-                  <span className="text-[10px] font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
-                    {activeExp.period}
+                  <div className="self-start sm:self-auto flex items-center gap-2">
+                    <span className="text-[10px] font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 whitespace-nowrap">
+                      {activeExp.period}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Mobile Achievement Pill */}
+                <div className="lg:hidden">
+                  <span className="inline-block text-[9px] font-mono uppercase font-semibold tracking-wider px-2.5 py-1 rounded-full bg-black/60 border border-emerald-400/30 text-emerald-300">
+                    {activeExp.badge}
                   </span>
                 </div>
 
@@ -270,6 +311,20 @@ export const ExperienceSection: React.FC = () => {
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
                       <span className="text-xs text-[#D7E2EA]/85 leading-relaxed">
                         {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile 4-Stat Metric Grid */}
+                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 lg:hidden">
+                  {activeExp.stats.map((stat, i) => (
+                    <div key={i} className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col">
+                      <span className="text-[8px] uppercase tracking-wider text-[#D7E2EA]/50 font-mono truncate">
+                        {stat.label}
+                      </span>
+                      <span className="text-[11px] font-bold text-cyan-300 font-mono mt-0.5 truncate">
+                        {stat.val}
                       </span>
                     </div>
                   ))}
@@ -313,20 +368,20 @@ export const ExperienceSection: React.FC = () => {
               </div>
 
               {/* Quick Avatar Era Switcher Tabs */}
-              <div className="w-full grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-black/50 border border-white/10 mb-2.5">
+              <div className="w-full grid grid-cols-4 gap-1 p-1 rounded-2xl bg-black/50 border border-white/10 mb-2.5">
                 {EXPERIENCES.map((exp, idx) => {
                   const isSelected = idx === selectedIndex;
                   return (
                     <button
                       key={exp.id}
                       onClick={() => setSelectedIndex(idx)}
-                      className={`flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-xl text-[10px] font-mono uppercase font-semibold transition-all cursor-pointer ${
+                      className={`flex items-center justify-center gap-1 py-1 px-1.5 rounded-xl text-[9px] font-mono uppercase font-semibold transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 shadow-sm'
                           : 'text-[#D7E2EA]/60 hover:text-white hover:bg-white/5 border border-transparent'
                       }`}
                     >
-                      <div className="w-5 h-5 rounded-full overflow-hidden bg-black/40 flex-shrink-0 border border-white/15">
+                      <div className="w-4 h-4 rounded-full overflow-hidden bg-black/40 flex-shrink-0 border border-white/15">
                         <img
                           src={exp.avatarImg}
                           alt={exp.role}
@@ -334,7 +389,7 @@ export const ExperienceSection: React.FC = () => {
                         />
                       </div>
                       <span className="truncate">
-                        {exp.type === 'fresher' ? 'TCS 2025' : exp.type === 'intern' ? 'Intern' : 'College'}
+                        {exp.shortLabel}
                       </span>
                     </button>
                   );

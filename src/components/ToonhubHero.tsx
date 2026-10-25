@@ -274,7 +274,7 @@ export const ToonhubHero: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-sm font-semibold uppercase tracking-wider text-[#D7E2EA] hover:text-emerald-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-colors border-b border-white/5"
               >
-                Experience (Evolving Avatar)
+                Experience
               </a>
               <a
                 href="#services"
