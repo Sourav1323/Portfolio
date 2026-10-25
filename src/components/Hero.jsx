@@ -100,10 +100,8 @@ const Hero = ({ onOpenRecruiterModal }) => {
               </h1>
               
               <p className="text-sm sm:text-base text-slate-300/90 max-w-2xl leading-relaxed pt-1 sm:pt-2">
-                Hello, I'm <span className="text-white font-semibold">{personalInfo.name}</span>. 
-                A Software Engineer specializing in <span className="text-white font-medium">Java (11/17), Spring Boot, Distributed Systems, & SQL query optimization</span>. 
-                Currently resolving 30+ mission-critical incidents weekly for 200–500 European users at TCS, backed by 
-                5-Star HackerRank problem solving and demonstrated engineering leadership.
+                Backend Software Developer specializing in <span className="text-white font-medium">Java (11/17), Spring Boot, Distributed Systems & SQL query tuning</span>. 
+                Active European enterprise operations at TCS, verified 5-Star HackerRank problem solving, and dual ServiceNow certifications.
               </p>
             </div>
 

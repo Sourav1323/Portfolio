@@ -7,6 +7,7 @@ import {
   Building2 
 } from 'lucide-react';
 import { experienceData } from '../data/portfolioData';
+import { TCSWorkloadDonutGraph } from './VisualGraphs';
 
 const ExperienceTimeline = () => {
   return (
@@ -14,7 +15,7 @@ const ExperienceTimeline = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/[0.04] text-slate-300 border border-white/[0.08]">
             <Briefcase className="w-3.5 h-3.5 text-blue-400" />
             Verified Career Trajectory
@@ -25,6 +26,11 @@ const ExperienceTimeline = () => {
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
             From European enterprise client operations at TCS to sub-second database engineering and cloud architectures.
           </p>
+        </div>
+
+        {/* Visual Graph: TCS Production Workload Distribution */}
+        <div className="max-w-2xl mx-auto mb-14">
+          <TCSWorkloadDonutGraph />
         </div>
 
         {/* Timeline Stack */}

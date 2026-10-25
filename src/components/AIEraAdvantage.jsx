@@ -8,9 +8,11 @@ import {
   Send, 
   Terminal, 
   Lightbulb, 
-  BrainCircuit
+  BrainCircuit,
+  TrendingUp
 } from 'lucide-react';
 import { aiVsLegacyComparison, recruiterCopilotQA } from '../data/portfolioData';
+import { VelocityDefectGraph } from './VisualGraphs';
 
 const AIEraAdvantage = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(recruiterCopilotQA[0].id);
@@ -74,57 +76,15 @@ const AIEraAdvantage = () => {
           </p>
         </div>
 
-        {/* Side-by-Side Visual Comparison Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+        {/* Side-by-Side Visual Comparison Grid (Graph + Capabilities) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16 items-start">
           
-          {/* Card 1: Vulnerable Commodity Developer */}
-          <div className="p-6 sm:p-8 rounded-3xl pro-card relative overflow-hidden">
-            <div className="flex items-center justify-between pb-4 border-b border-white/[0.06] mb-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
-                  <AlertCircle className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-rose-400">
-                    High Vulnerability
-                  </span>
-                  <h3 className="text-lg font-bold text-white">The Commodity Coder</h3>
-                </div>
-              </div>
-              <span className="text-xs font-mono bg-rose-500/10 text-rose-300 px-2.5 py-1 rounded-full border border-rose-500/20">
-                1.0x Baseline
-              </span>
-            </div>
-
-            {/* Visual Risk Gauge */}
-            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] mb-4 space-y-2">
-              <div className="flex justify-between text-xs">
-                <span className="text-slate-400">AI Replacement Threat:</span>
-                <span className="text-rose-400 font-bold">High (Boilerplate Attrition)</span>
-              </div>
-              <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                <div className="bg-rose-500 h-1.5 rounded-full w-[85%]" />
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {aiVsLegacyComparison.map((item, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-start gap-2.5 text-xs">
-                  <span className="text-rose-400 font-mono mt-0.5">✕</span>
-                  <div>
-                    <span className="font-semibold text-slate-300 uppercase tracking-wide mr-1.5">
-                      {item.dimension}:
-                    </span>
-                    <span className="text-slate-400">
-                      {item.legacy}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Column 1: Interactive Impact Curve Graph */}
+          <div>
+            <VelocityDefectGraph />
           </div>
 
-          {/* Card 2: AI-Augmented Systems Engineer (Sourav) */}
+          {/* Column 2: AI-Augmented Systems Engineer (Sourav) */}
           <div className="p-6 sm:p-8 rounded-3xl pro-card-glow relative overflow-hidden shadow-xl">
             <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
               <div className="flex items-center gap-3">

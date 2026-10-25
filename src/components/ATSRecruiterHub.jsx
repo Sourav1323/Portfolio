@@ -8,10 +8,12 @@ import {
   ShieldCheck, 
   FileText, 
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  BarChart3
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalInfo, atsResumeText } from '../data/portfolioData';
+import { ATSMatchGraph } from './VisualGraphs';
 
 const atsTargetRoles = [
   { role: "Backend Software Developer", match: "99%", badge: "Primary Match" },
@@ -218,6 +220,11 @@ Resume: https://github.com/Sourav1323 | Contact: (+91) 8619377860 | souravgupta.
             </div>
 
           </div>
+        </div>
+
+        {/* Visual Graph: ATS Recruiter Match & Competency Benchmark */}
+        <div className="mb-12">
+          <ATSMatchGraph />
         </div>
 
         {/* ATS Keywords Cloud */}
