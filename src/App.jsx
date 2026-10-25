@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InteractiveBackground from './components/InteractiveBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LiveMarquee from './components/LiveMarquee';
@@ -23,8 +24,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen relative bg-[#06080e] fintech-mesh-bg fintech-grid-pattern text-slate-100 selection:bg-emerald-500/25 selection:text-emerald-100">
+    <div className="min-h-screen relative bg-[#06080e] text-slate-100 selection:bg-emerald-500/25 selection:text-emerald-100 overflow-x-hidden">
       
+      {/* Dynamic Animated FinTech Background & Interactive Particle Matrix */}
+      <InteractiveBackground />
+
       {/* Top Floating Glass Navbar */}
       <Navbar onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
 

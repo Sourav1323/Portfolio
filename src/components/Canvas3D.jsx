@@ -33,14 +33,14 @@ const Canvas3D = () => {
     const origPositions = posAttr.array.slice();
 
     const sphereMat = new THREE.MeshStandardMaterial({
-      color: 0x818cf8,
+      color: 0x10b981,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.38,
       roughness: 0.1,
       metalness: 0.9,
-      emissive: 0x4f46e5,
-      emissiveIntensity: 0.25
+      emissive: 0x059669,
+      emissiveIntensity: 0.3
     });
     const celestialSphere = new THREE.Mesh(sphereGeo, sphereMat);
     mainGroup.add(celestialSphere);
@@ -74,19 +74,19 @@ const Canvas3D = () => {
       return ring;
     };
 
-    const ring1 = createAstrolabeRing(3.4, 0.018, 0x818cf8, 0.45, Math.PI / 3, Math.PI / 6);
-    const ring2 = createAstrolabeRing(3.8, 0.015, 0x38bdf8, 0.35, -Math.PI / 4, Math.PI / 5);
-    const ring3 = createAstrolabeRing(4.2, 0.012, 0xc084fc, 0.25, Math.PI / 2.5, -Math.PI / 4);
+    const ring1 = createAstrolabeRing(3.4, 0.018, 0x10b981, 0.5, Math.PI / 3, Math.PI / 6);
+    const ring2 = createAstrolabeRing(3.8, 0.015, 0x38bdf8, 0.4, -Math.PI / 4, Math.PI / 5);
+    const ring3 = createAstrolabeRing(4.2, 0.012, 0x34d399, 0.3, Math.PI / 2.5, -Math.PI / 4);
 
     // 4. Soft Bioluminescent Orbiting Orbs
     const orbitingNodes = [];
-    const nodePalette = [0x38bdf8, 0x818cf8, 0x34d399, 0xf472b6, 0xa78bfa];
+    const nodePalette = [0x10b981, 0x38bdf8, 0x34d399, 0x06b6d4, 0xf59e0b];
     for (let i = 0; i < 5; i++) {
       const nodeGeo = new THREE.SphereGeometry(0.16, 24, 24);
       const nodeMat = new THREE.MeshStandardMaterial({
         color: nodePalette[i],
         emissive: nodePalette[i],
-        emissiveIntensity: 0.8,
+        emissiveIntensity: 0.85,
         roughness: 0.1
       });
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
@@ -110,14 +110,14 @@ const Canvas3D = () => {
       starPositions[i + 1] = (Math.random() - 0.5) * 22;
       starPositions[i + 2] = (Math.random() - 0.5) * 16;
 
-      // Relaxing color blend: Lavender, soft cyan, sky blue, warm rose
+      // Relaxing color blend: Emerald, Cyan, Mint, Platinum
       const rand = Math.random();
-      if (rand < 0.35) {
-        starColors[i] = 0.51; starColors[i + 1] = 0.55; starColors[i + 2] = 0.97; // Indigo/lavender
-      } else if (rand < 0.7) {
-        starColors[i] = 0.22; starColors[i + 1] = 0.74; starColors[i + 2] = 0.97; // Soft sky
+      if (rand < 0.4) {
+        starColors[i] = 0.06; starColors[i + 1] = 0.72; starColors[i + 2] = 0.50; // Emerald
+      } else if (rand < 0.8) {
+        starColors[i] = 0.22; starColors[i + 1] = 0.74; starColors[i + 2] = 0.97; // Cyan
       } else {
-        starColors[i] = 0.78; starColors[i + 1] = 0.6; starColors[i + 2] = 0.98; // Lilac
+        starColors[i] = 0.96; starColors[i + 1] = 0.62; starColors[i + 2] = 0.04; // Amber Gold
       }
     }
 
@@ -139,7 +139,7 @@ const Canvas3D = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(ambientLight);
 
-    const light1 = new THREE.PointLight(0x818cf8, 3.5, 25);
+    const light1 = new THREE.PointLight(0x10b981, 3.5, 25);
     light1.position.set(6, 6, 6);
     scene.add(light1);
 
@@ -147,7 +147,7 @@ const Canvas3D = () => {
     light2.position.set(-6, -4, 4);
     scene.add(light2);
 
-    const light3 = new THREE.PointLight(0xf472b6, 2, 20);
+    const light3 = new THREE.PointLight(0x059669, 2, 20);
     light3.position.set(0, -6, -3);
     scene.add(light3);
 
