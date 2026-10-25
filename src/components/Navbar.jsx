@@ -1,109 +1,118 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Building2, 
-  Key, 
-  Mail, 
-  Target, 
-  ShieldCheck,
-  Compass
-} from 'lucide-react';
+import { FileText, Menu, X, ArrowUpRight } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar({ onOpenRecruiterModal, buildingView, onToggleView }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'ABOUT', href: '#about' },
+    { name: 'EXPERTISE', href: '#services' },
+    { name: 'JOURNEY', href: '#experience' },
+    { name: 'PROJECTS', href: '#projects' },
+    { name: 'CREDENTIALS', href: '#credentials' },
+    { name: 'CONTACT', href: '#contact' },
+  ];
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'py-3 bg-[#06080e]/95 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/80' 
-        : 'py-4 bg-[#06080e]/80 backdrop-blur-md border-b border-white/[0.05]'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          
-          {/* Left: Brand Monomark & Real-Time Status */}
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => onToggleView && onToggleView('exterior')}
-              className="flex items-center gap-3 group text-left cursor-pointer"
-            >
-              <div className="w-8 h-8 rounded-xl bg-[#090d18] border border-[#d4af37]/50 p-[1px] flex items-center justify-center transition-all group-hover:border-[#d4af37] group-hover:scale-105 shadow-[0_0_15px_rgba(212,175,55,0.25)]">
-                <span className="font-bold text-xs text-[#d4af37] font-mono-telemetry">
-                  SG
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold tracking-tight text-white flex items-center gap-2 text-xs sm:text-sm">
-                  {personalInfo.name}
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse" />
-                    TCS SDE
-                  </span>
-                </span>
-                <span className="text-[10px] text-slate-400 font-mono-telemetry hidden sm:inline">
-                  Bank of Institutional Systems & Engineering
-                </span>
-              </div>
-            </button>
-          </div>
+    <>
+      <header
+        className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] px-6 sm:px-12 py-5 z-50 flex items-center justify-between transition-all duration-300 ${
+          scrolled ? 'backdrop-blur-md bg-[#0b080c]/80 border-b border-[#c2a4ff]/10 py-4 shadow-lg shadow-black/40' : ''
+        }`}
+      >
+        {/* Left Branding */}
+        <a href="#home" className="flex items-center gap-2 group">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#c2a4ff] shadow-[0_0_8px_#c2a4ff] animate-pulse"></span>
+          <span className="font-bold text-sm tracking-widest text-[#eae5ec] group-hover:text-[#c2a4ff] transition-colors">
+            sourav.gupta
+          </span>
+        </a>
 
-          {/* Center: Building View Mode Selector (Desktop) */}
-          <div className="hidden sm:flex items-center gap-1 p-1 rounded-2xl bg-[#0a0f1d]/90 border border-[#d4af37]/30 backdrop-blur-xl shadow-xl">
-            <button
-              onClick={() => onToggleView && onToggleView('exterior')}
-              className={`px-4 py-1.5 rounded-xl text-xs font-mono-telemetry transition-all flex items-center gap-1.5 cursor-pointer ${
-                buildingView === 'exterior'
-                  ? 'bg-[#d4af37] text-slate-950 font-bold shadow-md shadow-[#d4af37]/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <Building2 className="w-3.5 h-3.5" />
-              <span>3D Bank Facade</span>
-            </button>
+        {/* Center Email (Desktop) */}
+        <a
+          href={`mailto:${personalInfo.email}`}
+          className="hidden md:inline-block text-xs text-[#eae5ec]/60 hover:text-[#c2a4ff] tracking-wider transition-colors"
+        >
+          {personalInfo.email}
+        </a>
 
-            <button
-              onClick={() => onToggleView && onToggleView('interior')}
-              className={`px-4 py-1.5 rounded-xl text-xs font-mono-telemetry transition-all flex items-center gap-1.5 cursor-pointer ${
-                buildingView === 'interior'
-                  ? 'bg-[#d4af37] text-slate-950 font-bold shadow-md shadow-[#d4af37]/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <Key className="w-3.5 h-3.5" />
-              <span>Step Inside (Host Tour)</span>
-            </button>
-          </div>
+        {/* Right Navigation (Desktop) */}
+        <div className="hidden lg:flex items-center gap-8">
+          <ul className="flex items-center gap-7 list-none m-0 p-0 text-xs font-semibold tracking-widest text-[#eae5ec]/70">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="hover:text-[#c2a4ff] transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={onOpenRecruiterModal}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-mono-telemetry uppercase tracking-wider text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all flex items-center gap-1.5 cursor-pointer"
-              title="Open Recruiter 60-Second Dossier"
-            >
-              <Target className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="hidden sm:inline">ATS Dossier</span>
-            </button>
-
-            <a
-              href={`mailto:${personalInfo.email}?subject=Priority Technical Interview Request - Sourav Gupta&body=Hi Sourav,%0D%0A%0D%0AWe reviewed your profile in the Bank of Institutional Systems and would like to schedule an engineering conversation.`}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-[#d4af37] to-[#b48c36] hover:from-[#e5c052] hover:to-[#c69a3b] transition-all flex items-center gap-1.5 shadow-md shadow-[#d4af37]/25 active:scale-[0.98] cursor-pointer"
-            >
-              <Mail className="w-3.5 h-3.5 text-slate-950" />
-              <span>Priority Connect</span>
-            </a>
-          </div>
-
+          <a
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider text-[#0b080c] bg-[#c2a4ff] hover:bg-white transition-all shadow-md shadow-[#c2a4ff]/20 active:scale-95"
+          >
+            <FileText className="w-3.5 h-3.5" />
+            <span>RESUME</span>
+          </a>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile Hamburger */}
+        <div className="lg:hidden flex items-center gap-3">
+          <a
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 rounded-full text-[11px] font-semibold text-[#0b080c] bg-[#c2a4ff]"
+          >
+            RESUME
+          </a>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-[#eae5ec] hover:text-[#c2a4ff] p-1.5 rounded-lg border border-[#c2a4ff]/20 bg-[#110e14]"
+            aria-label="Toggle Navigation"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#0b080c]/95 backdrop-blur-xl flex flex-col justify-center items-center gap-6 lg:hidden">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-lg font-bold tracking-widest text-[#eae5ec] hover:text-[#c2a4ff] transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href={`mailto:${personalInfo.email}`}
+            className="text-xs text-[#c2a4ff]/70 tracking-wider mt-4"
+          >
+            {personalInfo.email}
+          </a>
+        </div>
+      )}
+    </>
   );
 }

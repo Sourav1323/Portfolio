@@ -2,161 +2,238 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #06080e;
-  }
-  
-  body {
-    background-color: #06080e;
-    color: #f1f5f9;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
-    selection-background-color: rgba(16, 185, 129, 0.25);
-    selection-color: #34d399;
-  }
+:root {
+  font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #eae5ec;
+  --accent: #c2a4ff;
+  --accent-glow: rgba(194, 164, 255, 0.35);
+  --bg: #0b080c;
+  --bg2: #110e14;
+  --bg3: #18141c;
+  --border: rgba(194, 164, 255, 0.1);
+  --border-hover: rgba(194, 164, 255, 0.35);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Luxury Smooth Ambient FinTech Mesh Background */
-.fintech-mesh-bg {
-  background: 
-    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.07) 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 50% 60%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 85%, rgba(245, 158, 11, 0.04) 0%, transparent 45%),
-    #06080e;
+* {
+  box-sizing: border-box;
 }
 
-/* FinTech Grid Overlay */
-.fintech-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 56px 56px;
+body {
+  background: var(--bg);
+  color: #eae5ec;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  cursor: default;
 }
 
-/* Glassmorphism Cards */
-.bento-card {
-  background: rgba(13, 18, 30, 0.65);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 10px 30px -10px rgba(0, 0, 0, 0.7),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.07);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* ── CUSTOM CURSOR FOLLOWER ── */
+#cur {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.08s ease-out;
+  mix-blend-mode: screen;
 }
 
-.bento-card:hover {
-  border-color: rgba(16, 185, 129, 0.35);
-  box-shadow: 
-    0 20px 45px -15px rgba(0, 0, 0, 0.85),
-    0 0 35px -10px rgba(16, 185, 129, 0.15),
-    inset 0 1px 1px 0 rgba(16, 185, 129, 0.15);
-  transform: translateY(-3px);
+#cur-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(194, 164, 255, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 99998;
+  transition: width 0.2s, height 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-.bento-card-emerald {
-  background: linear-gradient(145deg, rgba(16, 30, 24, 0.7), rgba(9, 16, 22, 0.8));
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 
-    0 15px 35px -10px rgba(0, 0, 0, 0.8),
-    0 0 30px -12px rgba(16, 185, 129, 0.2),
-    inset 0 1px 1px 0 rgba(16, 185, 129, 0.2);
+#cur.big {
+  transform: translate(-50%, -50%) scale(2.2);
 }
 
-/* Shimmer & Glow Effects */
-.emerald-glow {
-  box-shadow: 0 0 30px -8px rgba(16, 185, 129, 0.4);
+#cur-ring.big {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(194, 164, 255, 0.9);
+  background: rgba(194, 164, 255, 0.06);
 }
 
-.cyan-glow {
-  box-shadow: 0 0 30px -8px rgba(56, 189, 248, 0.35);
+/* ── AMBIENT GLOW CIRCLES ── */
+.circle1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, #fb8dff 0%, rgba(138, 43, 226, 0.35) 60%, transparent 75%);
+  filter: blur(80px);
+  border-radius: 50%;
+  animation: spin1 14s linear infinite;
+  pointer-events: none;
+  opacity: 0.38;
 }
 
-/* Minimalist FinTech Scrollbar */
+@keyframes spin1 {
+  0% { transform: translate(-30%, -30%) rotate(0deg); }
+  50% { transform: translate(-10%, -10%) rotate(180deg); }
+  100% { transform: translate(-30%, -30%) rotate(360deg); }
+}
+
+.circle2 {
+  position: fixed;
+  top: 45%;
+  right: 0;
+  z-index: 1;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #8a2be2 0%, rgba(194, 164, 255, 0.3) 60%, transparent 75%);
+  filter: blur(90px);
+  border-radius: 50%;
+  animation: spin2 18s linear infinite;
+  pointer-events: none;
+  opacity: 0.32;
+}
+
+@keyframes spin2 {
+  0% { transform: translate(30%, -20%) rotate(0deg); }
+  50% { transform: translate(15%, 0%) rotate(-180deg); }
+  100% { transform: translate(30%, -20%) rotate(-360deg); }
+}
+
+.nav-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(11, 8, 12, 0.95) 0%, rgba(11, 8, 12, 0.6) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* ── HERO PHOTO GLOW ── */
+.character-rim {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  z-index: 1;
+  background: radial-gradient(circle, #c2a4ff 0%, #a855f7 40%, rgba(168, 85, 247, 0) 70%);
+  filter: blur(55px);
+  border-radius: 50%;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.95); }
+  100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.char-fade {
+  position: absolute;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(11, 8, 12, 0.7) 45%, #0b080c 95%);
+  bottom: 0;
+  left: 0;
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* ── CARD STYLING ── */
+.ehansih-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ehansih-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.ehansih-card:hover {
+  border-color: rgba(194, 164, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(194, 164, 255, 0.08);
+}
+
+.ehansih-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── SERVICE ROW HOVER ── */
+.service-item {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s, background-color 0.3s, padding-left 0.3s;
+}
+
+.service-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.service-item:hover {
+  color: var(--accent);
+  padding-left: 12px;
+}
+
+.service-item:hover .service-arrow {
+  transform: translate(6px, -6px);
+  color: var(--accent);
+}
+
+/* ── SCROLL REVEAL UTILITY ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #06080e;
+  background: #0b080c;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(194, 164, 255, 0.2);
   border-radius: 9999px;
-  border: 1px solid #06080e;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.6);
-}
-
-/* Monospace font utility */
-.font-mono-telemetry {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-}
-
-/* Infinite Telemetry Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 32s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Fluid Floating Ambient Auroras */
-@keyframes float-aurora-1 {
-  0%, 100% {
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate3d(50px, -40px, 0px) scale(1.15);
-  }
-  66% {
-    transform: translate3d(-30px, 30px, 0px) scale(0.92);
-  }
-}
-
-@keyframes float-aurora-2 {
-  0%, 100% {
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate3d(-45px, 45px, 0px) scale(1.12);
-  }
-  66% {
-    transform: translate3d(35px, -35px, 0px) scale(0.95);
-  }
-}
-
-@keyframes float-aurora-3 {
-  0%, 100% {
-    transform: translate3d(0px, 0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate3d(40px, 30px, 0px) scale(1.08);
-  }
-}
-
-.animate-aurora-1 {
-  animation: float-aurora-1 20s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.animate-aurora-2 {
-  animation: float-aurora-2 25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.animate-aurora-3 {
-  animation: float-aurora-3 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  background: rgba(194, 164, 255, 0.5);
 }

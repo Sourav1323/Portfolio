@@ -11,15 +11,5 @@ export default defineConfig({
     watch: {
       ignored: ['**/*.pdf', '**/node_modules/**', '**/.git/**']
     }
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'three-core': ['three'],
-          'ui-effects': ['canvas-confetti']
-        }
-      }
-    }
   }
 })
