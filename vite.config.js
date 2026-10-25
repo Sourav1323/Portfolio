@@ -9,7 +9,7 @@ export default defineConfig({
     host: true,
     open: false,
     watch: {
-      ignored: ['**/*.pdf', '**/node_modules/**', '**/.git/**']
+      ignored: ['**/*.pdf', '**/node_modules/**', '**/.git/**', '**/public/**']
     }
   }
 })

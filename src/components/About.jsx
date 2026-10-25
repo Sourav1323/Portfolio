@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { personalInfo } from '../data/portfolioData';
-import { ShieldCheck, Zap, Star, Award, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Zap, Star, Award, CheckCircle2, Camera, Upload } from 'lucide-react';
 
 export default function About() {
+  const [photoSrc, setPhotoSrc] = useState('/photo.jpg');
+  const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    const custom = localStorage.getItem('sourav_custom_photo_v2');
+    if (custom) setPhotoSrc(custom);
+
+    const onPhotoUpdated = () => {
+      const updated = localStorage.getItem('sourav_custom_photo_v2');
+      if (updated) setPhotoSrc(updated);
+    };
+
+    window.addEventListener('photo_updated', onPhotoUpdated);
+    window.addEventListener('storage', onPhotoUpdated);
+    return () => {
+      window.removeEventListener('photo_updated', onPhotoUpdated);
+      window.removeEventListener('storage', onPhotoUpdated);
+    };
+  }, []);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (uploadEvent) => {
+        if (uploadEvent.target?.result) {
+          const result = uploadEvent.target.result;
+          setPhotoSrc(result);
+          localStorage.setItem('sourav_custom_photo_v2', result);
+          window.dispatchEvent(new Event('photo_updated'));
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const stats = [
     { num: '99.4%', label: 'SLA Adherence' },
     { num: '40%', label: 'DB Speed Boost' },
@@ -72,16 +108,33 @@ export default function About() {
             {/* Glowing Accent Corner */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#c2a4ff]/20 rounded-full filter blur-2xl pointer-events-none" />
 
+            {/* Change Photo Button */}
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-[#0b080c]/80 backdrop-blur-md border border-[#c2a4ff]/30 text-[#c2a4ff] hover:text-white hover:border-[#c2a4ff] text-[11px] font-medium flex items-center gap-1.5 shadow-lg transition-all"
+              title="Upload another photo from your device"
+            >
+              <Camera className="w-3.5 h-3.5" />
+              <span>Change Photo</span>
+            </button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+            />
+
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
-                src="/sourav_avatar.png"
+                src={photoSrc}
                 alt="Sourav Gupta"
-                className="w-full h-full object-cover object-top filter brightness-[0.92] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-top filter brightness-[0.96] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
                 onError={(e) => {
                   e.target.src = '/photo.jpg';
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b080c] via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b080c] via-transparent to-transparent opacity-80 pointer-events-none" />
             </div>
 
             {/* Card Footer Info */}

@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowDown, Mail, ExternalLink } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Hero() {
+  const [photoSrc, setPhotoSrc] = useState('/photo.jpg');
+
+  useEffect(() => {
+    const custom = localStorage.getItem('sourav_custom_photo_v2');
+    if (custom) setPhotoSrc(custom);
+
+    const onPhotoUpdated = () => {
+      const updated = localStorage.getItem('sourav_custom_photo_v2');
+      if (updated) setPhotoSrc(updated);
+    };
+
+    window.addEventListener('photo_updated', onPhotoUpdated);
+    window.addEventListener('storage', onPhotoUpdated);
+    return () => {
+      window.removeEventListener('photo_updated', onPhotoUpdated);
+      window.removeEventListener('storage', onPhotoUpdated);
+    };
+  }, []);
+
   return (
     <section id="home" className="relative w-full h-[100svh] min-h-[640px] flex items-center justify-center overflow-hidden">
       {/* Container matching ehansih landing container */}
@@ -47,13 +66,12 @@ export default function Hero() {
             {/* The Radiant Rim Halo */}
             <div className="character-rim" />
 
-            {/* Avatar Image */}
+            {/* Sourav Gupta's Actual Photo */}
             <img
-              src="/sourav_avatar.png"
-              alt="Sourav Gupta - Software Engineer"
-              className="h-full object-contain object-bottom relative z-10 filter contrast-[1.08] brightness-[0.98] drop-shadow-[0_20px_50px_rgba(194,164,255,0.2)]"
+              src={photoSrc}
+              alt="Sourav Gupta"
+              className="h-full object-cover object-top relative z-10 filter contrast-[1.05] brightness-[0.98] drop-shadow-[0_20px_50px_rgba(194,164,255,0.25)] rounded-t-3xl"
               onError={(e) => {
-                // Fallback to photo.jpg
                 e.target.src = '/photo.jpg';
               }}
             />
