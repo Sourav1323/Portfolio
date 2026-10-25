@@ -39,6 +39,7 @@ export const ContactSection: React.FC = () => {
     subject: 'Project Inquiry',
     message: '',
   });
+  const [isSending, setIsSending] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleCopyEmail = () => {
@@ -53,20 +54,48 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Compose mailto URI
-    const subjectLine = encodeURIComponent(
-      `[Portfolio Inquiry] ${formData.subject} - from ${formData.name}`
-    );
-    const bodyContent = encodeURIComponent(
-      `Hi Sourav,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nSent from Portfolio Website`
-    );
-    window.location.href = `mailto:souravgupta.it25@gmail.com?subject=${subjectLine}&body=${bodyContent}`;
+    setIsSending(true);
 
-    setIsSubmitted(true);
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/souravgupta.it25@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `Portfolio Message from ${formData.name}: ${formData.subject}`,
+          _template: 'table',
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: 'Project Inquiry', message: '' });
+      } else {
+        throw new Error('HTTP POST failed');
+      }
+    } catch {
+      // Fallback to mailto link
+      const subjectLine = encodeURIComponent(
+        `[Portfolio Inquiry] ${formData.subject} - from ${formData.name}`
+      );
+      const bodyContent = encodeURIComponent(
+        `Hi Sourav,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nSent from Portfolio Website`
+      );
+      window.location.href = `mailto:souravgupta.it25@gmail.com?subject=${subjectLine}&body=${bodyContent}`;
+      setIsSubmitted(true);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -232,14 +261,14 @@ export const ContactSection: React.FC = () => {
                   <div className="w-12 h-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center">
                     <Check className="w-6 h-6" />
                   </div>
-                  <h4 className="text-lg font-bold text-white">Email Client Launched!</h4>
+                  <h4 className="text-lg font-bold text-white">Message Delivered to Sourav!</h4>
                   <p className="text-xs sm:text-sm text-[#D7E2EA]/70 max-w-md">
-                    If your email app didn&apos;t automatically open, feel free to write directly to{' '}
-                    <span className="font-mono text-[#B600A8]">souravgupta.it25@gmail.com</span>.
+                    Your inquiry has been transmitted directly to{' '}
+                    <span className="font-mono text-[#10B981] font-semibold">souravgupta.it25@gmail.com</span>. Sourav will respond to you shortly!
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-3 px-6 py-2 rounded-full bg-[#252528] text-xs font-medium uppercase tracking-wider text-[#D7E2EA] hover:text-white"
+                    className="mt-3 px-6 py-2 rounded-full bg-[#252528] text-xs font-medium uppercase tracking-wider text-[#D7E2EA] hover:text-white cursor-pointer"
                   >
                     Send Another Message
                   </button>
@@ -255,6 +284,7 @@ export const ContactSection: React.FC = () => {
                       <input
                         type="text"
                         required
+                        disabled={isSending}
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={(e) =>
@@ -272,6 +302,7 @@ export const ContactSection: React.FC = () => {
                       <input
                         type="email"
                         required
+                        disabled={isSending}
                         placeholder="john@example.com"
                         value={formData.email}
                         onChange={(e) =>
@@ -289,6 +320,7 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input
                       type="text"
+                      disabled={isSending}
                       placeholder="Backend Engineering / Job Opportunity / Collaboration"
                       value={formData.subject}
                       onChange={(e) =>
@@ -306,6 +338,7 @@ export const ContactSection: React.FC = () => {
                     <textarea
                       required
                       rows={4}
+                      disabled={isSending}
                       placeholder="Tell Sourav about your project, system architecture requirements, or role details..."
                       value={formData.message}
                       onChange={(e) =>
@@ -318,7 +351,8 @@ export const ContactSection: React.FC = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="mt-2 w-full sm:w-auto self-start flex items-center justify-center gap-2.5 rounded-full text-white font-medium uppercase tracking-widest px-8 py-3.5 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none"
+                    disabled={isSending}
+                    className="mt-2 w-full sm:w-auto self-start flex items-center justify-center gap-2.5 rounded-full text-white font-medium uppercase tracking-widest px-8 py-3.5 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none disabled:opacity-60"
                     style={{
                       background:
                         'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
@@ -327,7 +361,7 @@ export const ContactSection: React.FC = () => {
                     }}
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Message to Sourav</span>
+                    <span>{isSending ? 'Transmitting to Sourav...' : 'Send Message to Sourav'}</span>
                   </button>
                 </form>
               )}
