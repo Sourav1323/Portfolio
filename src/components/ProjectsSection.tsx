@@ -86,55 +86,57 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
   return (
     <div
       ref={containerRef}
-      className="h-[85vh] flex items-start justify-center sticky top-24 md:top-32"
+      className="min-h-[520px] sm:h-[85vh] flex items-start justify-center sticky top-20 sm:top-24 md:top-32 mb-6 sm:mb-0"
     >
       <motion.div
         style={{
           scale,
-          top: `${index * 28}px`,
+          top: `${index * 20}px`,
         }}
-        className="relative w-full max-w-6xl rounded-[36px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA]/40 bg-[#0C0C0C] p-5 sm:p-7 md:p-9 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden"
+        className="relative w-full max-w-6xl rounded-[28px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA]/40 bg-[#0C0C0C] p-4 sm:p-7 md:p-9 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden"
       >
         {/* ── TOP ROW: NUMBER, TITLE, GHOST LIVE BUTTON ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 md:pb-6 border-b border-[#D7E2EA]/15">
-          <div className="flex items-center gap-4 sm:gap-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 md:pb-6 border-b border-[#D7E2EA]/15">
+          <div className="flex items-center gap-3 sm:gap-8">
             {/* Huge Number */}
             <span
               className="font-black text-[#D7E2EA] leading-none select-none"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}
+              style={{ fontSize: 'clamp(2rem, 5vw, 5.5rem)' }}
             >
               {project.number}
             </span>
 
             {/* Project Name & Category Label */}
-            <div className="flex flex-col">
-              <span className="text-xs sm:text-sm font-light uppercase tracking-widest text-[#B600A8] font-mono">
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] sm:text-sm font-light uppercase tracking-widest text-[#B600A8] font-mono">
                 {project.category}
               </span>
-              <h3 className="text-lg sm:text-2xl md:text-3xl font-medium uppercase tracking-wide text-[#D7E2EA]">
+              <h3 className="text-base sm:text-2xl md:text-3xl font-medium uppercase tracking-wide text-[#D7E2EA] truncate sm:whitespace-normal">
                 {project.name}
               </h3>
             </div>
           </div>
 
           {/* Live Project Ghost Button */}
-          <LiveProjectButton url={project.url} />
+          <div className="self-start sm:self-auto">
+            <LiveProjectButton url={project.url} className="px-5 py-2 text-xs sm:px-10 sm:py-3.5 sm:text-base" />
+          </div>
         </div>
 
         {/* ── MAIN CONTENT: RESUME HIGHLIGHTS (LEFT) + SINGLE DEDICATED PREVIEW IMAGE (RIGHT) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-5 md:pt-7 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 pt-3 sm:pt-5 md:pt-7 items-center">
           {/* Left Column (5 Cols): Project Details & Resume Achievements */}
-          <div className="lg:col-span-5 flex flex-col justify-center gap-4">
+          <div className="lg:col-span-5 flex flex-col justify-center gap-2.5 sm:gap-4">
             <p className="text-xs sm:text-sm text-[#D7E2EA]/85 font-light leading-relaxed">
               {project.description}
             </p>
 
             {/* Key Resume Achievements List */}
-            <div className="flex flex-col gap-2.5 pt-1">
+            <div className="flex flex-col gap-2 sm:gap-2.5 pt-0.5 sm:pt-1">
               {project.highlights.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#B600A8] flex-shrink-0 mt-0.5" />
-                  <span className="text-xs text-[#D7E2EA]/80 leading-snug">
+                <div key={i} className="flex items-start gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#B600A8] flex-shrink-0 mt-0.5" />
+                  <span className="text-[11px] sm:text-xs text-[#D7E2EA]/80 leading-snug">
                     {item}
                   </span>
                 </div>
@@ -142,11 +144,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
             </div>
 
             {/* Tech Stack Badges */}
-            <div className="flex flex-wrap items-center gap-1.5 pt-3">
+            <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 pt-1.5 sm:pt-3">
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-mono uppercase tracking-wider bg-[#18181C] border border-[#D7E2EA]/20 text-[#BBCCD7]"
+                  className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[11px] font-mono uppercase tracking-wider bg-[#18181C] border border-[#D7E2EA]/20 text-[#BBCCD7]"
                 >
                   {tech}
                 </span>
@@ -155,12 +157,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, totalCards })
           </div>
 
           {/* Right Column (7 Cols): The Single Dedicated Project Showcase Preview */}
-          <div className="lg:col-span-7 w-full h-[240px] sm:h-[320px] md:h-[380px] lg:h-[420px] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-[#D7E2EA]/20 bg-[#141416] shadow-2xl relative group">
+          <div className="lg:col-span-7 w-full h-[170px] sm:h-[260px] md:h-[340px] lg:h-[420px] rounded-[20px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-[#D7E2EA]/20 bg-[#141416] shadow-2xl relative group">
             <img
               src={project.image}
               alt={`${project.name} application preview`}
               loading="lazy"
-              className="w-full h-full object-cover rounded-[28px] sm:rounded-[36px] md:rounded-[44px] group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover rounded-[20px] sm:rounded-[36px] md:rounded-[44px] group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/60 via-transparent to-transparent pointer-events-none" />
           </div>

@@ -50,8 +50,8 @@ export const ServicesSection: React.FC = () => {
         {/* Section Heading */}
         <FadeIn delay={0} y={40}>
           <h2
-            className="text-[#0C0C0C] font-black uppercase text-center mb-16 sm:mb-20 md:mb-28 leading-none tracking-tight"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+            className="text-[#0C0C0C] font-black uppercase text-center mb-10 sm:mb-20 md:mb-28 leading-none tracking-tight"
+            style={{ fontSize: 'clamp(2.5rem, 11vw, 160px)' }}
           >
             Services
           </h2>
@@ -64,15 +64,15 @@ export const ServicesSection: React.FC = () => {
               key={service.number}
               delay={index * 0.1}
               y={30}
-              className={`w-full py-8 sm:py-10 md:py-12 border-b border-[#0C0C0C]/15 ${
+              className={`w-full py-6 sm:py-10 md:py-12 border-b border-[#0C0C0C]/15 ${
                 index === 0 ? 'border-t border-[#0C0C0C]/15' : ''
               }`}
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-12">
                 {/* Left: Giant Number */}
                 <div
                   className="font-black text-[#0C0C0C] leading-none select-none flex-shrink-0"
-                  style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
+                  style={{ fontSize: 'clamp(2.25rem, 8vw, 140px)' }}
                 >
                   {service.number}
                 </div>

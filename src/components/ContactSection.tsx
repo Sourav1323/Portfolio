@@ -105,14 +105,14 @@ export const ContactSection: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Section Heading: "Contact" */}
-        <FadeIn delay={0} y={40} className="w-full text-center mb-14 sm:mb-20">
+        <FadeIn delay={0} y={40} className="w-full text-center mb-10 sm:mb-20">
           <h2
             className="hero-heading font-black uppercase leading-none tracking-tight text-center"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+            style={{ fontSize: 'clamp(2.75rem, 11vw, 160px)' }}
           >
             Contact
           </h2>
-          <p className="mt-4 text-[#D7E2EA]/70 text-sm sm:text-base md:text-lg max-w-xl mx-auto uppercase tracking-wider font-light">
+          <p className="mt-4 text-[#D7E2EA]/70 text-xs sm:text-base md:text-lg max-w-xl mx-auto uppercase tracking-wider font-light">
             Let&apos;s build scalable architectures, backend systems, and innovative digital platforms together.
           </p>
         </FadeIn>
