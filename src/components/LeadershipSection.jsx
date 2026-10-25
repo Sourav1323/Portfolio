@@ -63,12 +63,17 @@ const LeadershipSection = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-between text-xs">
+                    <span className="text-slate-400 font-mono">Impact Metric:</span>
+                    <span className="text-emerald-400 font-bold font-mono">{item.metric}</span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-white/[0.06] flex flex-wrap gap-1.5">
+                <div className="pt-4 mt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
                   {item.skills.map((skill) => (
                     <span 
                       key={skill}

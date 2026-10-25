@@ -107,23 +107,45 @@ const Hero = ({ onOpenRecruiterModal }) => {
               </p>
             </div>
 
-            {/* MNC Alignment Strip */}
-            <div className="p-4 sm:p-5 rounded-2xl pro-card text-left max-w-xl mx-auto lg:mx-0">
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-xl bg-white/[0.04] text-blue-400 shrink-0 mt-0.5 border border-white/[0.06]">
-                  <Terminal className="w-4 h-4" />
+            {/* MNC Engineering Capabilities - Visual Micro-Grid */}
+            <div className="grid grid-cols-2 gap-2.5 max-w-xl mx-auto lg:mx-0 text-left">
+              <div className="p-3 rounded-xl pro-card flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <div className="space-y-1">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center justify-between">
-                    <span>MNC & Tier-1 Engineering Profile</span>
-                    <span className="text-emerald-400 font-mono text-[11px]">SDE-1 / SDE-2 Target</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    Combines <strong className="text-slate-200">5-Star HackerRank C++/SQL fundamentals</strong>, 
-                    <strong className="text-slate-200"> dual ServiceNow certifications (CAD & CSA)</strong>, 
-                    <strong className="text-slate-200"> 40% database performance optimization</strong>, and 
-                    demonstrated engineering team leadership (Top 20/250 Hackathon Finalist).
-                  </p>
+                <div>
+                  <div className="text-xs font-bold text-white">TCS Enterprise POC</div>
+                  <div className="text-[10px] text-slate-400 font-mono">200–500 EU Users • 30+ SLA/wk</div>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl pro-card flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">40% SQL Speedup</div>
+                  <div className="text-[10px] text-slate-400 font-mono">B-Tree Indices • Zero Full Scans</div>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl pro-card flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
+                  <Star className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">5-Star HackerRank</div>
+                  <div className="text-[10px] text-slate-400 font-mono">C++ & SQL Problem Solving</div>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl pro-card flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">
+                  <Award className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">Dual Certified</div>
+                  <div className="text-[10px] text-slate-400 font-mono">ServiceNow CAD/CSA • Claude Dev</div>
                 </div>
               </div>
             </div>

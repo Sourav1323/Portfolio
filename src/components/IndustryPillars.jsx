@@ -113,31 +113,87 @@ const IndustryPillars = () => {
               </div>
             </div>
 
-            {/* Right 5 Cols: Strategic Alignment Box */}
+            {/* Right 5 Cols: Visual Architecture Pipeline Diagram */}
             <div className="lg:col-span-5 p-6 rounded-2xl bg-[#060912] border border-white/[0.08] space-y-4">
-              <div className="text-xs font-mono-code text-blue-300 uppercase tracking-wider flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-blue-400" />
-                <span>MNC Engineering Value</span>
+              <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+                <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-blue-400" />
+                  <span>Pipeline Architecture</span>
+                </div>
+                <span className="text-[11px] font-mono-code text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                  {currentDomain.id === 'fintech' ? '< 50ms Latency' : currentDomain.id === 'interactive' ? '60 FPS Loop' : '99.9% Uptime'}
+                </span>
               </div>
               
-              <h4 className="text-base font-semibold text-white">
-                How Sourav Adds Value To This Ecosystem
-              </h4>
+              {/* Interactive Visual Architecture Pipeline */}
+              <div className="space-y-2.5">
+                <div className="text-[11px] uppercase font-mono tracking-wider text-slate-400">
+                  Real-World Execution Flow
+                </div>
 
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {currentDomain.id === 'enterprise' && 
-                  "Proven experience handling strict international SLAs, enterprise access controls, ServiceNow production workflows, and cross-functional team collaboration."}
-                {currentDomain.id === 'fintech' && 
-                  "Combines lifelong understanding of market dynamics and trading principles with strict database ACID compliance, 40% query optimization, and mathematical calculation accuracy."}
-                {currentDomain.id === 'interactive' && 
-                  "Leverages 5-star C++ memory control, high-order algebraic intuition from 4 years of mathematics mentorship, and rapid prototyping capability proven in nationwide hackathons."}
-              </p>
+                {currentDomain.id === 'fintech' && (
+                  <div className="space-y-2">
+                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-300 font-mono">01. Order Ingestion</span>
+                      <span className="text-blue-400 font-mono">Validated DTO</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">02. Deterministic Calculation</span>
+                      <span className="text-blue-300 font-mono">GST + Freight Rules</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">03. ACID Storage & Audit</span>
+                      <span className="text-emerald-400 font-mono">SCD-2 Index Seek (48ms)</span>
+                    </div>
+                  </div>
+                )}
+
+                {currentDomain.id === 'interactive' && (
+                  <div className="space-y-2">
+                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-300 font-mono">01. Discrete Input Queue</span>
+                      <span className="text-blue-400 font-mono">Zero-Latency State</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">02. C++ Algorithmic Loop</span>
+                      <span className="text-blue-300 font-mono">Heap-Free Memory</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">03. Frame Synchronization</span>
+                      <span className="text-emerald-400 font-mono">16.6ms Target Tick</span>
+                    </div>
+                  </div>
+                )}
+
+                {currentDomain.id === 'enterprise' && (
+                  <div className="space-y-2">
+                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-300 font-mono">01. Client Incident Dispatch</span>
+                      <span className="text-blue-400 font-mono">200–500 EU Users</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">02. ServiceNow Automation</span>
+                      <span className="text-blue-300 font-mono">Production Script Includes</span>
+                    </div>
+                    <div className="flex justify-center text-slate-500">↓</div>
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between text-xs">
+                      <span className="text-white font-mono">03. SLA Resolution</span>
+                      <span className="text-emerald-400 font-mono">30+ Incidents / Wk</span>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-slate-400">
                 <span className="text-emerald-400 font-medium flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5" /> High Architectural Fit
                 </span>
-                <span className="font-mono-code text-slate-500 text-[11px]">Tier-1 Standard</span>
+                <span className="font-mono-code text-slate-400 text-[11px]">Enterprise Grade</span>
               </div>
             </div>
 
