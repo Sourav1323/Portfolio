@@ -219,6 +219,9 @@ export const ToonhubHero: React.FC = () => {
             <a href="#about" className="hover:text-white transition-colors">
               About
             </a>
+            <a href="#experience" className="hover:text-white transition-colors">
+              Experience
+            </a>
             <a href="#services" className="hover:text-white transition-colors">
               FinTech Services
             </a>
@@ -265,6 +268,13 @@ export const ToonhubHero: React.FC = () => {
                 className="text-sm font-semibold uppercase tracking-wider text-[#D7E2EA] hover:text-emerald-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-colors border-b border-white/5"
               >
                 About Me
+              </a>
+              <a
+                href="#experience"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm font-semibold uppercase tracking-wider text-[#D7E2EA] hover:text-emerald-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-colors border-b border-white/5"
+              >
+                Experience (Evolving Avatar)
               </a>
               <a
                 href="#services"

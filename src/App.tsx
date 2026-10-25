@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
+import { ExperienceSection } from './components/ExperienceSection';
 import { ServicesSection } from './components/ServicesSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ContactSection } from './components/ContactSection';
@@ -17,13 +18,16 @@ export default function App() {
       {/* 2. ABOUT SECTION */}
       <AboutSection />
 
-      {/* 3. SERVICES SECTION */}
+      {/* 3. EXPERIENCE SECTION (EVOLVING AVATAR) */}
+      <ExperienceSection />
+
+      {/* 4. SERVICES SECTION */}
       <ServicesSection />
 
-      {/* 4. PROJECTS SECTION */}
+      {/* 5. PROJECTS SECTION */}
       <ProjectsSection />
 
-      {/* 5. CONTACT SECTION */}
+      {/* 6. CONTACT SECTION */}
       <ContactSection />
     </div>
   );

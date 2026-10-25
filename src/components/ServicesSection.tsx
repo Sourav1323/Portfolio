@@ -36,7 +36,7 @@ const services: ServiceItem[] = [
     number: '05',
     name: 'Algorithmic Problem Solving & DSA',
     description:
-      '5-Star HackerRank rated in C++ and SQL, specializing in space/time complexity optimization, data structure design, and 4 years of mathematical problem-solving mentorship.',
+      'Solved 200+ LeetCode problems in C++, Java, and SQL, specializing in space/time complexity optimization, data structure design, and 4 years of mathematical problem-solving mentorship.',
   },
 ];
 

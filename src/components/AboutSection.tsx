@@ -121,34 +121,34 @@ export const AboutSection: React.FC = () => {
         {/* Gap between heading/text: gap-10 sm:gap-14 md:gap-16 */}
         <div className="mt-8 sm:mt-14 md:mt-16 w-full flex flex-col items-center">
           <AnimatedText
-            text="Backend Software Developer with a strong foundation in Java, SQL, Data Structures & Algorithms, and OOP. Currently an Assistant System Engineer at TCS Bangalore, serving as the primary technical point of contact for a Netherlands enterprise client with 200–500 users and 99.4% SLA adherence. Earned 5-star ratings on HackerRank in C++ and SQL, dual ServiceNow certified, and Anthropic Claude Developer certified."
+            text="Backend Software Developer specializing in Java, Distributed Systems, SQL optimization, and Data Structures & Algorithms. Solved 200+ LeetCode algorithmic problems specializing in C++, Java, and relational databases. Recipient of the TCS On-the-Spot Award and Top 20 finalist across 250 teams in the Smart City Hackathon. Dual ServiceNow certified and Anthropic Claude Developer certified."
             className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[680px]"
             style={{ fontSize: 'clamp(0.95rem, 2vw, 1.35rem)' } as any}
           />
 
-          {/* Key Resume Highlights Badges */}
-          <FadeIn delay={0.3} y={20} className="mt-8 sm:mt-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-3xl w-full">
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#D7E2EA]/15 text-center flex flex-col items-center justify-center">
-              <span className="text-[#B600A8] font-bold text-base sm:text-xl">TCS</span>
-              <span className="text-[#D7E2EA]/70 text-[10px] sm:text-xs uppercase tracking-wider mt-1">
-                Assistant System Engineer
+          {/* Key Achievements & Awards Badges */}
+          <FadeIn delay={0.3} y={20} className="mt-6 sm:mt-10 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 max-w-3xl w-full">
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#B600A8]/30 text-center flex flex-col items-center justify-center hover:border-[#B600A8] transition-colors">
+              <span className="text-[#FF8BF5] font-bold text-base sm:text-xl font-mono">200+</span>
+              <span className="text-[#D7E2EA]/80 text-[9px] sm:text-xs uppercase tracking-wider mt-1">
+                LeetCode Solved (DSA)
               </span>
             </div>
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#D7E2EA]/15 text-center flex flex-col items-center justify-center">
-              <span className="text-[#7621B0] font-bold text-base sm:text-xl">5-Star</span>
-              <span className="text-[#D7E2EA]/70 text-[10px] sm:text-xs uppercase tracking-wider mt-1">
-                HackerRank C++ &amp; SQL
-              </span>
-            </div>
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#D7E2EA]/15 text-center flex flex-col items-center justify-center">
-              <span className="text-[#00F5FF] font-bold text-base sm:text-xl">+40%</span>
-              <span className="text-[#D7E2EA]/70 text-[10px] sm:text-xs uppercase tracking-wider mt-1">
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#7621B0]/30 text-center flex flex-col items-center justify-center hover:border-[#7621B0] transition-colors">
+              <span className="text-[#A855F7] font-bold text-base sm:text-xl font-mono">+40%</span>
+              <span className="text-[#D7E2EA]/80 text-[9px] sm:text-xs uppercase tracking-wider mt-1">
                 Query Speed Optimization
               </span>
             </div>
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#D7E2EA]/15 text-center flex flex-col items-center justify-center">
-              <span className="text-[#BE4C00] font-bold text-base sm:text-xl">Top 20</span>
-              <span className="text-[#D7E2EA]/70 text-[10px] sm:text-xs uppercase tracking-wider mt-1">
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#10B981]/30 text-center flex flex-col items-center justify-center hover:border-[#10B981] transition-colors">
+              <span className="text-emerald-400 font-bold text-base sm:text-xl font-mono">Award</span>
+              <span className="text-[#D7E2EA]/80 text-[9px] sm:text-xs uppercase tracking-wider mt-1">
+                TCS On-the-Spot Award
+              </span>
+            </div>
+            <div className="p-2.5 sm:p-3.5 rounded-2xl bg-[#141414]/80 border border-[#BE4C00]/30 text-center flex flex-col items-center justify-center hover:border-[#BE4C00] transition-colors">
+              <span className="text-[#FF7A29] font-bold text-base sm:text-xl font-mono">Top 20</span>
+              <span className="text-[#D7E2EA]/80 text-[9px] sm:text-xs uppercase tracking-wider mt-1">
                 Smart City Hackathon (250)
               </span>
             </div>
