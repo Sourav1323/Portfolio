@@ -13,7 +13,7 @@ import {
 import confetti from 'canvas-confetti';
 import { personalInfo, atsResumeText } from '../data/portfolioData';
 
-const RecruiterModal = ({ isOpen, onClose }) => {
+const RecruiterModal = ({ isOpen, onClose, onOpenResumeModal }) => {
   const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
@@ -125,15 +125,16 @@ const RecruiterModal = ({ isOpen, onClose }) => {
 
         {/* Action Buttons */}
         <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row gap-3">
-          <a
-            href={personalInfo.resumeUrl}
-            download="Sourav_Gupta_Resume.pdf"
-            onClick={triggerDownloadConfetti}
-            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-md"
+          <button
+            onClick={() => {
+              onClose();
+              if (onOpenResumeModal) onOpenResumeModal();
+            }}
+            className="flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
           >
             <FileDown className="w-4 h-4" />
             <span>Download Official PDF Resume</span>
-          </a>
+          </button>
 
           <button
             onClick={handleCopyText}

@@ -12,6 +12,7 @@ import ATSRecruiterHub from './components/ATSRecruiterHub';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import RecruiterModal from './components/RecruiterModal';
+import ResumeDownloadModal from './components/ResumeDownloadModal';
 import { 
   FileDown, 
   Target, 
@@ -59,6 +60,7 @@ const PageTransitionBanner = ({ nextPage, pageNumber, title, subtitle, onSelectP
 
 function App() {
   const [recruiterModalOpen, setRecruiterModalOpen] = useState(false);
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [activePage, setActivePage] = useState(() => {
     const hash = window.location.hash.replace('#', '');
     if (['overview', 'engineering', 'experience', 'projects'].includes(hash)) {
@@ -122,6 +124,7 @@ function App() {
         activePage={activePage}
         onSelectPage={handleSelectPage}
         onOpenRecruiterModal={() => setRecruiterModalOpen(true)}
+        onOpenResumeModal={() => setResumeModalOpen(true)}
         isAllView={isAllView}
         onToggleAllView={handleToggleAllView}
       />
@@ -131,7 +134,10 @@ function App() {
         {isAllView ? (
           /* Continuous Scroll: View All */
           <div>
-            <Hero onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
+            <Hero 
+              onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
+              onOpenResumeModal={() => setResumeModalOpen(true)}
+            />
             <SkillsShowcase />
             <div id="architectures">
               <IndustryPillars />
@@ -148,7 +154,7 @@ function App() {
               <ProjectsSection />
             </div>
             <div id="ats-hub">
-              <ATSRecruiterHub />
+              <ATSRecruiterHub onOpenResumeModal={() => setResumeModalOpen(true)} />
             </div>
             <div id="contact">
               <ContactSection />
@@ -159,7 +165,10 @@ function App() {
           <div>
             {activePage === 'overview' && (
               <div className="animate-in fade-in duration-300">
-                <Hero onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
+                <Hero 
+                  onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
+                  onOpenResumeModal={() => setResumeModalOpen(true)}
+                />
                 <PageTransitionBanner
                   nextPage="engineering"
                   pageNumber="02"
@@ -206,7 +215,7 @@ function App() {
             {activePage === 'projects' && (
               <div className="animate-in fade-in duration-300 pt-20">
                 <ProjectsSection />
-                <ATSRecruiterHub />
+                <ATSRecruiterHub onOpenResumeModal={() => setResumeModalOpen(true)} />
                 <ContactSection />
               </div>
             )}
@@ -215,35 +224,40 @@ function App() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenResumeModal={() => setResumeModalOpen(true)} />
 
       {/* Recruiter Fast-Track Modal */}
       <RecruiterModal 
         isOpen={recruiterModalOpen} 
-        onClose={() => setRecruiterModalOpen(false)} 
+        onClose={() => setRecruiterModalOpen(false)}
+        onOpenResumeModal={() => setResumeModalOpen(true)} 
+      />
+
+      {/* Company Email Lead Capture Resume Modal */}
+      <ResumeDownloadModal
+        isOpen={resumeModalOpen}
+        onClose={() => setResumeModalOpen(false)}
       />
 
       {/* Floating Recruiter Quick Access Bar (Bottom Right on Desktop) */}
       <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 p-1.5 rounded-2xl pro-card-glow shadow-2xl">
         <button
           onClick={() => setRecruiterModalOpen(true)}
-          className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 transition-all flex items-center gap-1.5"
+          className="px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 transition-all flex items-center gap-1.5 cursor-pointer"
           title="Open Recruiter Summary"
         >
           <Target className="w-3.5 h-3.5 text-blue-400" />
           <span>ATS Dossier</span>
         </button>
 
-        <a
-          href={personalInfo.resumeUrl}
-          download="Sourav_Gupta_Resume.pdf"
-          onClick={triggerDownloadConfetti}
-          className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-1.5 shadow-md active:scale-95"
+        <button
+          onClick={() => setResumeModalOpen(true)}
+          className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer"
           title="Download PDF Resume"
         >
           <FileDown className="w-3.5 h-3.5 text-slate-950" />
           <span>Resume (PDF)</span>
-        </a>
+        </button>
       </div>
 
     </div>

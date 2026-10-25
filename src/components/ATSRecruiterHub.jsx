@@ -31,7 +31,7 @@ const atsKeywords = {
   "Cloud & Tools": ["Salesforce LWC", "SAP Cloud ABAP", "MuleSoft", "Azure", "Git", "VS Code", "IntelliJ IDEA"]
 };
 
-const ATSRecruiterHub = () => {
+const ATSRecruiterHub = ({ onOpenResumeModal }) => {
   const [copiedResume, setCopiedResume] = useState(false);
   const [copiedPitch, setCopiedPitch] = useState(false);
   const [showFullText, setShowFullText] = useState(false);
@@ -144,12 +144,10 @@ Resume: https://github.com/Sourav1323 | Contact: (+91) 8619377860 | souravgupta.
               {/* Action Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 
-                {/* Download Real PDF */}
-                <a
-                  href={personalInfo.resumeUrl}
-                  download="Sourav_Gupta_Resume.pdf"
-                  onClick={triggerDownloadConfetti}
-                  className="p-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-semibold transition-all flex flex-col justify-between shadow-sm group active:scale-[0.98]"
+                {/* Download Real PDF via Company Email Modal */}
+                <button
+                  onClick={onOpenResumeModal}
+                  className="p-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-semibold transition-all flex flex-col justify-between shadow-sm group active:scale-[0.98] cursor-pointer text-left"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <FileDown className="w-5 h-5 text-slate-900 group-hover:scale-105 transition-transform" />
@@ -159,9 +157,9 @@ Resume: https://github.com/Sourav1323 | Contact: (+91) 8619377860 | souravgupta.
                   </div>
                   <div>
                     <div className="text-sm font-bold">Download Official Resume</div>
-                    <div className="text-[11px] text-slate-600 font-medium">Sourav_Gupta_Resume.pdf</div>
+                    <div className="text-[11px] text-slate-600 font-medium">Verified Recruiter Access</div>
                   </div>
-                </a>
+                </button>
 
                 {/* Copy Plaintext */}
                 <button

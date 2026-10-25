@@ -13,7 +13,7 @@ import {
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
 
-const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, isAllView, onToggleAllView }) => {
+const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, onOpenResumeModal, isAllView, onToggleAllView }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -130,15 +130,13 @@ const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, isAllView, onT
                 <span>ATS View</span>
               </button>
 
-              <a
-                href={personalInfo.resumeUrl}
-                download="Sourav_Gupta_Resume.pdf"
-                onClick={triggerDownloadConfetti}
-                className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-1.5 shadow-sm active:scale-[0.98]"
+              <button
+                onClick={onOpenResumeModal}
+                className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-1.5 shadow-sm active:scale-[0.98] cursor-pointer"
               >
                 <FileDown className="w-3.5 h-3.5 text-slate-950" />
                 <span>Download CV</span>
-              </a>
+              </button>
             </div>
 
           </div>

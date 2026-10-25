@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
-const Footer = () => {
+const Footer = ({ onOpenResumeModal }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,15 +43,13 @@ const Footer = () => {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-2.5">
-            <a
-              href={personalInfo.resumeUrl}
-              download="Sourav_Gupta_Resume.pdf"
-              onClick={triggerDownloadConfetti}
-              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors"
+            <button
+              onClick={onOpenResumeModal}
+              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors cursor-pointer"
               title="Download Resume"
             >
               <FileDown className="w-4 h-4" />
-            </a>
+            </button>
             <a
               href={personalInfo.github}
               target="_blank"
