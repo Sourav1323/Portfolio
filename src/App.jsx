@@ -1,230 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import SkillsShowcase from './components/SkillsShowcase';
-import IndustryPillars from './components/IndustryPillars';
-import LeadershipSection from './components/LeadershipSection';
-import AIEraAdvantage from './components/AIEraAdvantage';
-import ExperienceTimeline from './components/ExperienceTimeline';
-import ProjectsSection from './components/ProjectsSection';
-import CertificationsBadges from './components/CertificationsBadges';
-import SoftSkillsMatrix from './components/SoftSkillsMatrix';
-import ATSRecruiterHub from './components/ATSRecruiterHub';
-import ContactSection from './components/ContactSection';
+import LiveMarquee from './components/LiveMarquee';
+import FintechBentoGrid from './components/FintechBentoGrid';
+import ProductionLedgers from './components/ProductionLedgers';
+import RecruiterCommandHub from './components/RecruiterCommandHub';
 import Footer from './components/Footer';
 import RecruiterModal from './components/RecruiterModal';
-import { 
-  Mail, 
-  Target, 
-  ArrowRight, 
-  Cpu, 
-  Briefcase, 
-  FolderGit2, 
-  Sparkles,
-  Compass
-} from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Target, Mail } from 'lucide-react';
 import { personalInfo } from './data/portfolioData';
 
-// Reusable Next Page Transition Banner
-const PageTransitionBanner = ({ nextPage, pageNumber, title, subtitle, onSelectPage, icon: Icon }) => (
-  <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12">
-    <div 
-      onClick={() => onSelectPage(nextPage)}
-      className="p-6 sm:p-8 rounded-2xl pro-card hover:border-slate-600 transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl"
-    >
-      <div className="flex items-center gap-4">
-        <div className="p-3.5 rounded-xl bg-slate-800/80 text-blue-400 border border-slate-700/60 group-hover:scale-110 group-hover:bg-blue-500/10 transition-all">
-          <Icon className="w-5 h-5" />
-        </div>
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
-            <span>Next Chapter • {pageNumber}</span>
-          </div>
-          <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
-            {title}
-          </h4>
-          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-            {subtitle}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-white bg-slate-800/80 group-hover:bg-white group-hover:text-slate-950 px-4 py-2.5 rounded-xl border border-slate-700/60 transition-all self-start sm:self-center shrink-0">
-        <span>Proceed</span>
-        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-      </div>
-    </div>
-  </div>
-);
-
-function App() {
+export default function App() {
   const [recruiterModalOpen, setRecruiterModalOpen] = useState(false);
-  const [activePage, setActivePage] = useState(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (['overview', 'engineering', 'experience', 'projects'].includes(hash)) {
-      return hash;
+
+  const handleScrollToConnect = () => {
+    const el = document.getElementById('connect');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = `mailto:${personalInfo.email}?subject=Priority%20Engineering%20Inquiry%20-%20Sourav%20Gupta`;
     }
-    return 'overview';
-  });
-  const [isAllView, setIsAllView] = useState(false);
-
-  // Sync hash on URL changes or tab changes
-  const handleSelectPage = (pageId) => {
-    setActivePage(pageId);
-    setIsAllView(false);
-    window.location.hash = pageId;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const handleToggleAllView = () => {
-    setIsAllView((prev) => {
-      const next = !prev;
-      if (next) {
-        window.location.hash = 'all';
-      } else {
-        window.location.hash = activePage;
-      }
-      return next;
-    });
-  };
-
-  // Keyboard navigation shortcuts [1, 2, 3, 4, A]
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      // Ignore keydown if user is typing in input or textarea
-      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
-
-      if (e.key === '1') handleSelectPage('overview');
-      if (e.key === '2') handleSelectPage('engineering');
-      if (e.key === '3') handleSelectPage('experience');
-      if (e.key === '4') handleSelectPage('projects');
-      if (e.key === 'a' || e.key === 'A') handleToggleAllView();
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   return (
-    <div className="min-h-screen relative bg-[#03070d] text-slate-200">
+    <div className="min-h-screen relative bg-[#06080e] fintech-mesh-bg fintech-grid-pattern text-slate-100 selection:bg-emerald-500/25 selection:text-emerald-100">
       
-      {/* Top Glass Navbar & Floating Capsule Dock */}
-      <Navbar 
-        activePage={activePage}
-        onSelectPage={handleSelectPage}
-        onOpenRecruiterModal={() => setRecruiterModalOpen(true)}
-        isAllView={isAllView}
-        onToggleAllView={handleToggleAllView}
-      />
+      {/* Top Floating Glass Navbar */}
+      <Navbar onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
 
-      {/* Main Content Area */}
-      <main className="min-h-[85vh]">
-        {isAllView ? (
-          /* Continuous Scroll: View All */
-          <div>
-            <Hero 
-              onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
-            />
-            <SkillsShowcase />
-            <div id="architectures">
-              <IndustryPillars />
-            </div>
-            <AIEraAdvantage />
-            <div id="experience">
-              <ExperienceTimeline />
-            </div>
-            <div id="leadership">
-              <LeadershipSection />
-            </div>
-            <CertificationsBadges />
-            <div id="projects">
-              <ProjectsSection />
-            </div>
-            <div id="ats-hub">
-              <ATSRecruiterHub />
-            </div>
-            <div id="contact">
-              <ContactSection />
-            </div>
-          </div>
-        ) : (
-          /* Structured Multi-Page Views (Eliminates Text & Content Fatigue) */
-          <div>
-            {activePage === 'overview' && (
-              <div className="animate-in fade-in duration-300">
-                <Hero 
-                  onOpenRecruiterModal={() => setRecruiterModalOpen(true)} 
-                />
-                <PageTransitionBanner
-                  nextPage="engineering"
-                  pageNumber="02"
-                  title="FinTech Engines & High-Throughput Systems"
-                  subtitle="Explore low-latency SQL query benchmarks, deterministic calculation pipelines, and AI-augmented velocity."
-                  onSelectPage={handleSelectPage}
-                  icon={Cpu}
-                />
-              </div>
-            )}
+      {/* Main Cohesive FinTech Layout */}
+      <main className="relative z-10">
+        
+        {/* Section 01: Command Overview & 3D Action Figure Pod */}
+        <Hero onOpenRecruiterModal={() => setRecruiterModalOpen(true)} />
 
-            {activePage === 'engineering' && (
-              <div className="animate-in fade-in duration-300 pt-20">
-                <SkillsShowcase />
-                <IndustryPillars />
-                <AIEraAdvantage />
-                <PageTransitionBanner
-                  nextPage="experience"
-                  pageNumber="03"
-                  title="Human Leadership, Soft Skills & Enterprise Career"
-                  subtitle="Inspect high-stakes crisis composure at TCS, cross-cultural client empathy, and 4-year mentorship track record."
-                  onSelectPage={handleSelectPage}
-                  icon={Briefcase}
-                />
-              </div>
-            )}
+        {/* Real-Time Live Telemetry Infinite Marquee */}
+        <LiveMarquee />
 
-            {activePage === 'experience' && (
-              <div className="animate-in fade-in duration-300 pt-20">
-                <SoftSkillsMatrix />
-                <ExperienceTimeline />
-                <LeadershipSection />
-                <CertificationsBadges />
-                <PageTransitionBanner
-                  nextPage="projects"
-                  pageNumber="04"
-                  title="Production Ledgers & 98.5% ATS Recruiter Hub"
-                  subtitle="Review production software systems, 1-click ATS plain-text copy, and direct recruiter contact."
-                  onSelectPage={handleSelectPage}
-                  icon={FolderGit2}
-                />
-              </div>
-            )}
+        {/* Section 02: The FinTech & Leadership Bento Grid */}
+        <FintechBentoGrid />
 
-            {activePage === 'projects' && (
-              <div className="animate-in fade-in duration-300 pt-20">
-                <ProjectsSection />
-                <ATSRecruiterHub />
-                <ContactSection />
-              </div>
-            )}
-          </div>
-        )}
+        {/* Section 03: Signature Production Software Ledgers */}
+        <ProductionLedgers />
+
+        {/* Section 04: Recruiter Priority Dispatch & ATS Terminal */}
+        <RecruiterCommandHub />
+
       </main>
 
-      {/* Footer */}
+      {/* Sleek Minimalist Footer */}
       <Footer />
 
-      {/* Recruiter Fast-Track Modal */}
+      {/* 60-Second ATS Fast-Track Modal */}
       <RecruiterModal 
         isOpen={recruiterModalOpen} 
-        onClose={() => setRecruiterModalOpen(false)}
+        onClose={() => setRecruiterModalOpen(false)} 
       />
 
       {/* Floating Recruiter Quick Access Bar (Bottom Right on Desktop) */}
-      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 p-1.5 rounded-2xl pro-card-glow shadow-2xl">
+      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 p-1.5 rounded-2xl bg-[#090d18]/90 backdrop-blur-xl border border-white/[0.1] shadow-2xl">
         <button
           onClick={() => setRecruiterModalOpen(true)}
-          className="px-3.5 py-2 rounded-xl text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/60 transition-all flex items-center gap-1.5 cursor-pointer"
+          className="px-3.5 py-2 rounded-xl text-xs font-mono-telemetry uppercase tracking-wider text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all flex items-center gap-1.5 cursor-pointer"
           title="Open Recruiter Dossier"
         >
           <Target className="w-3.5 h-3.5 text-emerald-400" />
@@ -232,16 +69,9 @@ function App() {
         </button>
 
         <button
-          onClick={() => {
-            const contactEl = document.getElementById('contact');
-            if (contactEl) {
-              contactEl.scrollIntoView({ behavior: 'smooth' });
-            } else {
-              window.location.href = `mailto:${personalInfo.email}?subject=Priority%20Engineering%20Inquiry%20-%20Sourav%20Gupta`;
-            }
-          }}
+          onClick={handleScrollToConnect}
           className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center gap-1.5 shadow-md shadow-emerald-500/20 active:scale-95 cursor-pointer"
-          title="Direct Contact"
+          title="Direct Priority Contact"
         >
           <Mail className="w-3.5 h-3.5 text-slate-950" />
           <span>Priority Connect</span>
@@ -251,5 +81,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

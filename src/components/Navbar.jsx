@@ -11,123 +11,110 @@ import {
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, isAllView, onToggleAllView }) => {
+export default function Navbar({ onOpenRecruiterModal }) {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('overview');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sections = ['overview', 'bento', 'projects', 'connect'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navPages = [
-    { id: 'overview', label: 'Terminal', icon: Compass, key: '1' },
-    { id: 'engineering', label: 'FinTech Engines', icon: Cpu, key: '2' },
-    { id: 'experience', label: 'Leadership & EQ', icon: HeartHandshake, key: '3' },
-    { id: 'projects', label: 'Systems & ATS', icon: FolderGit2, key: '4' },
-  ];
-
-  const handleContactClick = () => {
-    if (isAllView) {
-      const contactEl = document.getElementById('contact');
-      if (contactEl) {
-        contactEl.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
-    onSelectPage('projects');
-    setTimeout(() => {
-      const contactEl = document.getElementById('contact');
-      if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
   };
+
+  const navLinks = [
+    { id: 'overview', label: 'Command', icon: Compass },
+    { id: 'bento', label: 'FinTech Bento', icon: Cpu },
+    { id: 'projects', label: 'Systems Ledgers', icon: FolderGit2 },
+    { id: 'connect', label: 'Recruiter Dispatch', icon: Mail },
+  ];
 
   return (
     <>
-      {/* Top Floating Glass Bar */}
+      {/* Top Floating Glass Capsule Bar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'py-2.5 bg-[#03070d]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-xl shadow-black/50' 
-          : 'py-3.5 bg-transparent'
+          ? 'py-3 bg-[#06080e]/90 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/80' 
+          : 'py-4 bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* Left: FinTech Terminal Brand & Status */}
+            {/* Left: Brand Monomark & Real-Time Status */}
             <button 
-              onClick={() => onSelectPage('overview')}
-              className="flex items-center gap-2.5 group text-left cursor-pointer"
+              onClick={() => scrollTo('overview')}
+              className="flex items-center gap-3 group text-left cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-xl bg-slate-900 border border-emerald-500/30 p-[1px] flex items-center justify-center transition-all group-hover:border-emerald-400 group-hover:scale-105 shadow-[0_0_12px_rgba(16,185,129,0.2)]">
-                <span className="font-bold text-xs text-emerald-400 font-mono-code">
+              <div className="w-8 h-8 rounded-xl bg-[#090d18] border border-emerald-500/30 p-[1px] flex items-center justify-center transition-all group-hover:border-emerald-400 group-hover:scale-105 shadow-[0_0_15px_rgba(16,185,129,0.25)]">
+                <span className="font-bold text-xs text-emerald-400 font-mono-telemetry">
                   SG
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold tracking-tight text-white flex items-center gap-1.5 text-xs sm:text-sm">
+                <span className="font-bold tracking-tight text-white flex items-center gap-2 text-xs sm:text-sm">
                   {personalInfo.name}
-                  <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[9px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse" />
                     TCS SDE
                   </span>
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono hidden sm:inline">
-                  FinTech & Systems Architecture
+                <span className="text-[10px] text-slate-400 font-mono-telemetry hidden sm:inline">
+                  FinTech & Distributed Systems SDE
                 </span>
               </div>
             </button>
 
-            {/* Center: Creative Floating Capsule Island (Desktop) */}
-            <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-slate-900/85 border border-slate-800 backdrop-blur-xl shadow-2xl">
-              {navPages.map((page) => {
-                const Icon = page.icon;
-                const isActive = activePage === page.id && !isAllView;
+            {/* Center: Frosted Navigation Capsule (Desktop) */}
+            <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-[#0a0f1d]/85 border border-white/[0.08] backdrop-blur-xl shadow-xl">
+              {navLinks.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeSection === item.id;
                 return (
                   <button
-                    key={page.id}
-                    onClick={() => onSelectPage(page.id)}
-                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+                    key={item.id}
+                    onClick={() => scrollTo(item.id)}
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
                       isActive
-                        ? 'bg-emerald-400 text-slate-950 font-semibold shadow-md shadow-emerald-500/20'
+                        ? 'bg-emerald-400 text-slate-950 font-bold shadow-md shadow-emerald-500/25'
                         : 'text-slate-300 hover:text-white hover:bg-white/[0.06]'
                     }`}
                   >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-slate-950' : 'text-slate-400'}`} />
-                    <span>{page.label}</span>
-                    <span className={`text-[9px] font-mono px-1 rounded ${
-                      isActive 
-                        ? 'bg-emerald-500/30 text-slate-900' 
-                        : 'bg-white/[0.04] text-slate-500'
-                    }`}>
-                      {page.key}
-                    </span>
+                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-slate-950' : 'text-emerald-400'}`} />
+                    <span>{item.label}</span>
                   </button>
                 );
               })}
-
-              {/* View All Continuous Scroll Toggle */}
-              <div className="w-[1px] h-4 bg-slate-800 mx-1" />
-              <button
-                onClick={onToggleAllView}
-                className={`px-2.5 py-1.5 rounded-full text-[11px] font-medium transition-all flex items-center gap-1 cursor-pointer ${
-                  isAllView
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'
-                }`}
-                title="Toggle continuous scroll mode for all sections"
-              >
-                <Layers className="w-3 h-3" />
-                <span>{isAllView ? 'All (On)' : 'All'}</span>
-              </button>
             </div>
 
-            {/* Right: Actions (NO resume download button) */}
-            <div className="flex items-center gap-2">
+            {/* Right: Actions */}
+            <div className="flex items-center gap-2.5">
               <button
                 onClick={onOpenRecruiterModal}
-                className="hidden sm:flex px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-800 border border-slate-800 transition-all items-center gap-1.5 cursor-pointer"
+                className="hidden sm:flex px-3.5 py-1.5 rounded-xl text-xs font-mono-telemetry uppercase tracking-wider text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all items-center gap-1.5 cursor-pointer"
                 title="Open Recruiter 60-Second Dossier"
               >
                 <Target className="w-3.5 h-3.5 text-emerald-400" />
@@ -135,8 +122,8 @@ const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, isAllView, onT
               </button>
 
               <button
-                onClick={handleContactClick}
-                className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center gap-1.5 shadow-md shadow-emerald-500/20 active:scale-[0.98] cursor-pointer"
+                onClick={() => scrollTo('connect')}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center gap-1.5 shadow-md shadow-emerald-500/25 active:scale-[0.98] cursor-pointer"
               >
                 <Mail className="w-3.5 h-3.5 text-slate-950" />
                 <span>Priority Connect</span>
@@ -147,38 +134,27 @@ const Navbar = ({ activePage, onSelectPage, onOpenRecruiterModal, isAllView, onT
         </div>
       </nav>
 
-      {/* Mobile Floating Bottom Dock */}
-      <div className="md:hidden fixed bottom-3 inset-x-3 max-w-sm mx-auto z-50 flex items-center justify-around p-1.5 rounded-2xl bg-[#03070d]/95 backdrop-blur-2xl border border-slate-800 shadow-2xl">
-        {navPages.map((page) => {
-          const Icon = page.icon;
-          const isActive = activePage === page.id && !isAllView;
+      {/* Mobile Floating Bottom Navigation Dock */}
+      <div className="md:hidden fixed bottom-3 inset-x-3 max-w-sm mx-auto z-50 flex items-center justify-around p-1.5 rounded-2xl bg-[#06080e]/95 backdrop-blur-2xl border border-white/[0.1] shadow-2xl">
+        {navLinks.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeSection === item.id;
           return (
             <button
-              key={page.id}
-              onClick={() => onSelectPage(page.id)}
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
               className={`flex-1 py-1.5 px-1 rounded-xl flex flex-col items-center justify-center transition-all cursor-pointer ${
                 isActive 
-                  ? 'bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30' 
+                  ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
-              <span className="text-[10px] mt-0.5">{page.label.split(' ')[0]}</span>
+              <span className="text-[10px] mt-0.5">{item.label.split(' ')[0]}</span>
             </button>
           );
         })}
-
-        <button
-          onClick={handleContactClick}
-          className="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center text-slate-400 hover:text-slate-200 cursor-pointer"
-          title="Direct Contact"
-        >
-          <Mail className="w-4 h-4 text-emerald-400" />
-          <span className="text-[10px] mt-0.5">Contact</span>
-        </button>
       </div>
     </>
   );
-};
-
-export default Navbar;
+}
