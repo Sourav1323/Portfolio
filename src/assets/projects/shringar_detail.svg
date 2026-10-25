@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#14111B" />
+        <stop offset="100%" stop-color="#0E0C13" />
+      </linearGradient>
+    </defs>
+    <rect width="600" height="450" rx="30" fill="url(#bg2)" stroke="#7621B0" stroke-width="1.5" stroke-opacity="0.4"/>
+    <text x="35" y="45" font-family="system-ui, sans-serif" font-size="16" fill="#FFFFFF" font-weight="bold">DOORSTEP ARTIST DISPATCH</text>
+    <text x="35" y="65" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA" fill-opacity="0.6">Real-Time Booking Verification &amp; OTP</text>
+
+    <rect x="35" y="90" width="530" height="80" rx="16" fill="#1C1826"/>
+    <text x="55" y="125" font-family="system-ui, sans-serif" font-size="13" fill="#D7E2EA" fill-opacity="0.7">Client Destination:</text>
+    <text x="55" y="148" font-family="system-ui, sans-serif" font-size="15" fill="#FFFFFF" font-weight="bold">Malviya Nagar, Jaipur, RJ</text>
+    <text x="480" y="138" font-family="system-ui, sans-serif" font-size="20" fill="#00F5FF" font-weight="bold">ETA 12m</text>
+
+    <g transform="translate(35, 195)">
+      <circle cx="15" cy="15" r="10" fill="#B600A8"/>
+      <text x="15" y="19" font-family="system-ui, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">✓</text>
+      <text x="40" y="20" font-family="system-ui, sans-serif" font-size="13" fill="#D7E2EA">Organic Henna Cones &amp; Sealant Kit Prepared</text>
+
+      <circle cx="15" cy="55" r="10" fill="#B600A8"/>
+      <text x="15" y="59" font-family="system-ui, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">✓</text>
+      <text x="40" y="60" font-family="system-ui, sans-serif" font-size="13" fill="#D7E2EA">Client Design Catalog Selected (Arabic Contemporary)</text>
+
+      <circle cx="15" cy="95" r="10" fill="#B600A8"/>
+      <text x="15" y="99" font-family="system-ui, sans-serif" font-size="12" fill="#FFF" text-anchor="middle">✓</text>
+      <text x="40" y="100" font-family="system-ui, sans-serif" font-size="13" fill="#D7E2EA">Secure Doorstep OTP Handshake: 7492</text>
+    </g>
+
+    <rect x="35" y="340" width="530" height="70" rx="16" fill="#1A1822" stroke="#D7E2EA" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="55" y="372" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA" fill-opacity="0.6">Platform Reliability Metric</text>
+    <text x="55" y="394" font-family="system-ui, sans-serif" font-size="14" fill="#BBCCD7" font-weight="bold">Full-Stack React + Node + MongoDB Backend</text>
+    <text x="540" y="385" font-family="system-ui, sans-serif" font-size="20" fill="#FF8BF5" text-anchor="end" font-weight="bold">99.8% Uptime</text>
+  </svg>

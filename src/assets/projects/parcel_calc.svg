@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0C1520" />
+        <stop offset="100%" stop-color="#080D14" />
+      </linearGradient>
+    </defs>
+    <rect width="600" height="350" rx="30" fill="url(#bg3)" stroke="#00F5FF" stroke-width="1.5" stroke-opacity="0.35"/>
+    <text x="35" y="42" font-family="system-ui, sans-serif" font-size="14" fill="#00F5FF" font-weight="bold" letter-spacing="1">PARCEL MANAGEMENT SYSTEM (JAVA OOP)</text>
+    <text x="35" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#D7E2EA" fill-opacity="0.6">Dynamic Weight, Distance &amp; 18% GST Invoice Computation</text>
+
+    <rect x="35" y="85" width="530" height="150" rx="16" fill="#111B28" stroke="#00F5FF" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="55" y="115" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA" fill-opacity="0.6">Base Freight (14.5 kg · Zone 1):</text>
+    <text x="540" y="115" font-family="system-ui, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="end" font-family="monospace">₹ 1,240.00</text>
+
+    <text x="55" y="145" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA" fill-opacity="0.6">Central GST (CGST @ 9%):</text>
+    <text x="540" y="145" font-family="system-ui, sans-serif" font-size="13" fill="#BBCCD7" text-anchor="end" font-family="monospace">₹ 111.60</text>
+
+    <text x="55" y="175" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA" fill-opacity="0.6">State GST (SGST @ 9%):</text>
+    <text x="540" y="175" font-family="system-ui, sans-serif" font-size="13" fill="#BBCCD7" text-anchor="end" font-family="monospace">₹ 111.60</text>
+
+    <line x1="55" y1="195" x2="540" y2="195" stroke="#D7E2EA" stroke-opacity="0.2"/>
+
+    <text x="55" y="222" font-family="system-ui, sans-serif" font-size="14" fill="#00F5FF" font-weight="bold">Total Invoice Payable:</text>
+    <text x="540" y="222" font-family="system-ui, sans-serif" font-size="18" fill="#00F5FF" text-anchor="end" font-weight="bold" font-family="monospace">₹ 1,463.20</text>
+
+    <rect x="35" y="255" width="530" height="65" rx="16" fill="#0E1A29" stroke="#00F5FF" stroke-width="1" stroke-opacity="0.2"/>
+    <text x="55" y="293" font-family="system-ui, sans-serif" font-size="12" fill="#D7E2EA">ACID Concurrency Tested &bull; 100+ Sample Ledger Records</text>
+    <text x="540" y="293" font-family="system-ui, sans-serif" font-size="13" fill="#00F5FF" text-anchor="end" font-weight="bold">Zero Discrepancy</text>
+  </svg>
